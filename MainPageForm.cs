@@ -295,48 +295,24 @@ namespace SMIP_Network
         // deciphering packets from the network manager
         private void DisplayData(object sender, EventArgs e)
         {
-            if (Universal.portType == "CLI")
+            Universal.DecodePacket();
+
+            Sensor_Payload += Universal.displayMessage;
+            this.Invoke(new EventHandler(MangToPhone));
+
+            if (Universal.PacketType == "03")
             {
-                //receiverTextBox.Text += Universal.dataIN;
-
-
+                Universal.dataOUT = "hello";
+                EnterKey();
             }
-            else
+
+            Universal.flagInt = 0;
+            Universal.dataIN = "";
+
+
+            if (Sensor_Payload.Contains("data: ") && Sensor_Payload.Contains("Payload length: "))
             {
-                Universal.DecodePacket();
-                // Uncomment if you want to see the entire packet in hex
-              //  receiverTextBox.Text += Universal.dataIN + "\r\n" + Universal.displayMessage;
-                //receiverTextBox.Text += Universal.displayMessage;
-                Sensor_Payload += Universal.displayMessage;
-                this.Invoke(new EventHandler(MangToPhone));
-
-                if (Universal.PacketType == "03")
-                {
-                    Universal.dataOUT = "hello";
-                    EnterKey();
-                }
-
-                Universal.flagInt = 0;
-                Universal.dataIN = "";
-
-
-                //if (Sensor_Payload.Contains("data:"))
-
-                    //	data: 013B013B01620004000000000001904C0000812BE933C72AAE0856012C57A2376200000000000000000000000000000000000000000000
-                    // Payload length: 55 bytes
-
-
-                    if (Sensor_Payload.Contains("data: ") && Sensor_Payload.Contains("Payload length: "))
-                    {
-                      
-                      
-                        //this.Invoke(new EventHandler(Sensor_data));
-                       
-
-
-                    }
-             
-
+                //this.Invoke(new EventHandler(Sensor_data));
             }
         }
 
@@ -416,11 +392,6 @@ namespace SMIP_Network
                                                          //data format:{ x, y, slope}; point1: (lg200, 0.53), point2: (lg10000,  -0.22)                                                     
         float Ro = 10;                 //Ro is initialized to 10 kilo ohms
 
-
-
-
-
-        
 
 
         #endregion
@@ -907,6 +878,21 @@ namespace SMIP_Network
 
 
         private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
