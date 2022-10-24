@@ -56,12 +56,12 @@ namespace SMIP_Network
 
             string[] ports = SerialPort.GetPortNames();
             comPortComboBox.Items.AddRange(ports);
-            chart1.Titles.Add("Mass-density (µg/m³) Air");
-            chart2.Titles.Add("Particle count (μm) ");
+            //chart1.Titles.Add("Mass-density (µg/m³) Air");
+            //chart2.Titles.Add("Particle count (μm) ");
 
-            chart3.Titles.Add("CO2 (PPM)");
+            //chart3.Titles.Add("CO2 (PPM)");
 
-            chart4.Titles.Add("AirQuality Sensors (PPM) ");
+            //chart4.Titles.Add("AirQuality Sensors (PPM) ");
 
         }
 
@@ -109,19 +109,9 @@ namespace SMIP_Network
                 Universal.portType = serialPort1.PortName.Replace("COM", "");
                 Universal.portTypeInt = Convert.ToInt32(Universal.portType);
 
-
-                if (Universal.portTypeInt % 2 == 0) //Even
-                {
-                    Universal.portType = "API";
-                    serialPort1.BaudRate = 115200;
-                    serialPort1.DtrEnable = true;
-                }
-                else
-                {
-                    Universal.portType = "CLI";
-                    serialPort1.BaudRate = 9600;
-                    serialPort1.DtrEnable = false;
-                }
+                Universal.portType = "API";
+                serialPort1.BaudRate = 115200;
+                serialPort1.DtrEnable = false;
 
                 serialPort1.Open();
 
@@ -185,7 +175,7 @@ namespace SMIP_Network
                 MessageBox.Show("there was problem in the internet.");
 
             }
-
+            /*
             chart1.Series[0].Points.AddY(0);
             chart1.Series[1].Points.AddY(0);
             chart1.Series[2].Points.AddY(0);
@@ -207,15 +197,10 @@ namespace SMIP_Network
 
             chart4.Series[0].Points.AddY(0);
             chart4.Series[1].Points.AddY(0);
-
+            */
 
 
         }
-
-
-
-   
-
 
 
         #region TransmissionTextBox
@@ -224,7 +209,7 @@ namespace SMIP_Network
         {
             if (Universal.EnterWasPressed == 1)
             {
-                transmitterTextBox.Text = transmitterTextBox.Text.Replace(Environment.NewLine, "");
+                //transmitterTextBox.Text = transmitterTextBox.Text.Replace(Environment.NewLine, "");
                 Universal.EnterWasPressed = 0;
             }
 
@@ -236,7 +221,7 @@ namespace SMIP_Network
             {
                 if (serialPort1.IsOpen)
                 {
-                    Universal.dataOUT = transmitterTextBox.Text;
+                    //Universal.dataOUT = transmitterTextBox.Text;
 
                 
 
@@ -245,51 +230,11 @@ namespace SMIP_Network
                     else
                         EnterKey();
 
-                    transmitterTextBox.Text = "";
+                   // transmitterTextBox.Text = "";
                     Universal.EnterWasPressed = 1;
                 }
             }
         }
-
-        #endregion
-
-
-
-
-
-
-        #region ReceiverTextBox
-
-        public void receiverTextBox_TextChanged_1(object sender, EventArgs e)
-        {
-            receiverTextBox.ScrollBars = ScrollBars.Vertical;
-            receiverTextBox.SelectionStart = receiverTextBox.Text.Length;
-            receiverTextBox.ScrollToCaret();
-        }
-
-        #endregion
-
-
-
-
-
-        #region Miscellaneous
-
-        //public void addToRecord(string time, string text, string filepath)
-        //{
-        //    try
-        //    {
-        //        using (StreamWriter file = new StreamWriter(filepath, true))
-        //        {
-        //            file.WriteLine("\t\t" + time + "\r\n" + text + "\r\n");
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //}
-
 
         #endregion
 
@@ -302,26 +247,13 @@ namespace SMIP_Network
 
 
         public void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
-        {
-            if (Universal.portType == "CLI")
+        { 
+            if (serialPort1.BytesToRead > 0)
             {
-                Universal.dataIN = serialPort1.ReadLine();
-                if (Universal.dataIN.Contains("\r"))
-                {
-                    Universal.dataIN += "\n";
-                }
-                this.Invoke(new EventHandler(DisplayData));
-            }
-            else
-            {
-                if (serialPort1.BytesToRead > 0)
-                {
-                    byte[] buffer = new byte[serialPort1.BytesToRead];
-                    int count = serialPort1.Read(buffer, 0, serialPort1.BytesToRead);
-                    Universal.Storage += Universal.ByteArrayToString(buffer);
-                    CheckForFullPacket();
-
-                }
+                byte[] buffer = new byte[serialPort1.BytesToRead];
+                int count = serialPort1.Read(buffer, 0, serialPort1.BytesToRead);
+                Universal.Storage += Universal.ByteArrayToString(buffer);
+                CheckForFullPacket();
             }
         }
 
@@ -365,7 +297,7 @@ namespace SMIP_Network
         {
             if (Universal.portType == "CLI")
             {
-                receiverTextBox.Text += Universal.dataIN;
+                //receiverTextBox.Text += Universal.dataIN;
 
 
             }
@@ -374,7 +306,7 @@ namespace SMIP_Network
                 Universal.DecodePacket();
                 // Uncomment if you want to see the entire packet in hex
               //  receiverTextBox.Text += Universal.dataIN + "\r\n" + Universal.displayMessage;
-                receiverTextBox.Text += Universal.displayMessage;
+                //receiverTextBox.Text += Universal.displayMessage;
                 Sensor_Payload += Universal.displayMessage;
                 this.Invoke(new EventHandler(MangToPhone));
 
@@ -398,7 +330,7 @@ namespace SMIP_Network
                     {
                       
                       
-                        this.Invoke(new EventHandler(Sensor_data));
+                        //this.Invoke(new EventHandler(Sensor_data));
                        
 
 
@@ -417,19 +349,10 @@ namespace SMIP_Network
             {
                 serialPort1.Write(Universal.Response, 0, Universal.length);
                 //receiverTextBox.Text += Universal.dataOUT + Universal.Sending;
-                receiverTextBox.Text += Universal.Sending;
+                //receiverTextBox.Text += Universal.Sending;
                // addToRecord(CurrentTime, Universal.Sending, FilePath);
             }
         }
-
-
-
-
-
-
-
-
-
         #region Sensor_data
 
         int GAS_LPG = 0;               
@@ -497,836 +420,11 @@ namespace SMIP_Network
 
 
 
-        public void Sensor_data(object sender, EventArgs e)
-        {
-
-           string CurentMote= "";
-            string Mote1 = "00170D000070A9ED";
-           string Mote2 = "00170D0000680696";
-
-
-          
-
-            receiverTextBox.Text = Universal.Sensor_payload;
-            string data_load = Universal.Sensor_payload;
-
-            CurentMote = Universal.macAddress;
-
-            textBox1.Text = CurentMote;
-
-
-            chart1.ChartAreas[0].AxisX.Title = "TIME ";
-            chart1.ChartAreas[0].AxisY.Title = "Mass-density value (µg/m³)";
-
-
-            chart2.ChartAreas[0].AxisX.Title = "TIME ";
-            chart2.ChartAreas[0].AxisY.Title = "Number of Particals";
-
-
-            chart3.ChartAreas[0].AxisX.Title = "TIME ";
-            chart3.ChartAreas[0].AxisY.Title = "PPM";
-
-
-            chart4.ChartAreas[0].AxisX.Title = "TIME ";
-            chart4.ChartAreas[0].AxisY.Title = "PPM";
-
-
-            //	data: 013B 013B 0162 00 04 00 00 00 00 00 01 90 4C 00 00 81 2B E9 33 C7 2A AE 08 56 01 2C 57 A2 37 62 00 000000000000000000000000000000000000000000
-            // Payload length: 55 bytes
-
-            // Sensor_Payload
-
-
-            // SNGCJA5_PM1 = data_load.Substring(0,4);
-
-
-         
-
-
-
-
-            if (CurentMote == Mote1)
-            {
-                textBox1.Text = CurentMote;
-
-                MoteCount++;
-
-
-
-                 SNGCJA5_PM1_double = ((double)Int64.Parse(Universal.SNGCJA5_PM1, System.Globalization.NumberStyles.HexNumber)) / 1000.0;
-
-                SNGCJA5_PM1_textBox.Text = SNGCJA5_PM1_double.ToString() + "µg/m³ \n";
-
-
-                //   SNGCJA5_PM2_5 = data_load.Substring(4, 4);
-
-                SNGCJA5_PM2_5_double = ((double)Int64.Parse(Universal.SNGCJA5_PM2_5, System.Globalization.NumberStyles.HexNumber)) / 1000.0;
-
-                SNGCJA5_PM2_5_textBox.Text = SNGCJA5_PM2_5_double.ToString() + "µg/m³ \n";
-
-
-               SNGCJA5_PM10_double = ((double)Int64.Parse(Universal.SNGCJA5_PM10, System.Globalization.NumberStyles.HexNumber)) / 1000.0;
-
-                SNGCJA5_PM10_textBox.Text = SNGCJA5_PM10_double.ToString() + "µg/m³ \n";
-
-                //Each One is 1 BYTE 
-
-                //         Register 1 for particle count(0.3 - 0.5µm)| i2c_app_v.StoreBUFFER[3] = PCOUNT0_5;//B3
-                //         Register 2 for particle count(0.5 - 1.0µm)| i2c_app_v.StoreBUFFER[4] = PCOUNT0_5;//B3
-                //         Register 3 for particle count(1.0 - 2.5µm) | i2c_app_v.StoreBUFFER[5] = PCOUNT0_5;//B3
-                //         Register 4 for particle count(2.5 - 5.0µm)| i2c_app_v.StoreBUFFER[6] = PCOUNT0_5;//B3
-                //         Register 5 for particle count(5.0 - 7.5µm)| i2c_app_v.StoreBUFFER[7] = PCOUNT0_5;//B3
-                //         Register 6 for particle count(7.5 - 10.0µm)| i2c_app_v.StoreBUFFER[8] = PCOUNT0_5;//B3
-                //         Register for sensor status information | i2c_app_v.StoreBUFFER[3] = PCOUNT0_5;//B3
-
-
-
-                // SNGCJA5_P_count_0_5 = data_load.Substring(12, 2);
-
-                SNGCJA5_P_count_0_5_double = ((double)Int64.Parse(Universal.SNGCJA5_P_count_0_5, System.Globalization.NumberStyles.HexNumber));
-
-                SNGCJA5_P_count_0_5_textbox.Text = SNGCJA5_P_count_0_5_double.ToString() + "#/cm³";
-
-                SNGCJA5_P_count_1_double = ((double)Int64.Parse(Universal.SNGCJA5_P_count_1, System.Globalization.NumberStyles.HexNumber));
-
-                SNGCJA5_P_count_1_textbox.Text = SNGCJA5_P_count_1_double.ToString() + "#/cm³";
-
-                SNGCJA5_P_count_2_5_double = ((double)Int64.Parse(Universal.SNGCJA5_P_count_2_5, System.Globalization.NumberStyles.HexNumber));
-
-                SNGCJA5_P_count_2_5_textbox.Text = SNGCJA5_P_count_2_5_double.ToString() + "#/cm³";
-
-                SNGCJA5_P_count_5_double = ((double)Int64.Parse(Universal.SNGCJA5_P_count_5, System.Globalization.NumberStyles.HexNumber));
-
-                SNGCJA5_P_count_5_textbox.Text = SNGCJA5_P_count_5_double.ToString() + "#/cm³";
-
-                SNGCJA5_P_count_7_5_double = ((double)Int64.Parse(Universal.SNGCJA5_P_count_7_5, System.Globalization.NumberStyles.HexNumber));
-
-                SNGCJA5_P_count_7_5_textbox.Text = SNGCJA5_P_count_7_5_double.ToString() + "#/cm³";
-
-
-                SNGCJA5_P_count_10_double = ((double)Int64.Parse(Universal.SNGCJA5_P_count_10, System.Globalization.NumberStyles.HexNumber));
-
-                SNGCJA5_P_count_10_textbox.Text = SNGCJA5_P_count_10_double.ToString() + "#/cm³";
-
-                double SNGCJA5_State_double = ((double)Int64.Parse(Universal.SNGCJA5_State, System.Globalization.NumberStyles.HexNumber));
-
-                SNGCJA5_State_textbox.Text = SNGCJA5_State_double.ToString();
-
-
-
-                /////AirQuality Sensor 
-                ///
-                //013B013B016200060000000000 0190 4C 0020 07 1BC22D872573086B012C57A22B1E00000000000000000000000000000000000000000000
-
-
-
-                // AirQ_C02 = data_load.Substring(26, 4);
-
-                AirQ_C02_double = ((double)Int64.Parse(Universal.AirQ_C02, System.Globalization.NumberStyles.HexNumber)) / 400.0;
-
-                AirQ_C02_textBox.Text = AirQ_C02_double.ToString() + " ppm \n";
-
-               
-
-
-
-                /// AirQ_TVOC = data_load.Substring(32, 4);
-
-                AirQ_TVOC_double = ((double)Int64.Parse(Universal.AirQ_TVOC, System.Globalization.NumberStyles.HexNumber)) / 1000.0;
-
-                AirQ_TVOC_textbox.Text = AirQ_TVOC_double.ToString() + " ppm \n";
-
-             
-
-
-                 Oxygen_Adc_double = ((double)Int64.Parse(Universal.Oxygen_Adc, System.Globalization.NumberStyles.HexNumber)) / 10000;
-
-
-                OXG_persent = (25 / 23) * (int)Oxygen_Adc_double;
-
-
-              //  Oxygen_Sensor_textbox.Text = OXG_persent.ToString() + " volt\n";
-
-
-              
-
-                //    temp_sensor = data_load.Substring(50, 4);
-
-                 temp_Mote1_double = ((double)Int64.Parse(Universal.temp_sensor, System.Globalization.NumberStyles.HexNumber)) / 100.0;
-
-                temp_Mote1_double = (Convert.ToDouble(temp_Mote1_double) / 100) * (9 / 5) + 32;
-
-                Temperature_textBox.Text = temp_Mote1_double.ToString() + " C\n";
-
-
-
-
-            }
-
-            else if (CurentMote == Mote2)
-
-            {
-
-                textBox1.Text = CurentMote;
-
-                MoteCount++;
-         //   Mq7_C02 = data_load.Substring(54, 4);
-
-                //double Mq7_C02_double = ((double)Int64.Parse(Universal.Mq7_C02, System.Globalization.NumberStyles.HexNumber)) / 100.000;
-
-                //double MQ7_CO2_PPM = Math.Pow(Mq7_C02_double, -1.709);
-
-                ///  MQ7_C02_textbox.Text = MQ7_CO2_PPM.ToString() + " ppm\n"; /// 
-
-
-                double Mq7_adc_double = ((double)Int64.Parse(Universal.Mq7_adc, System.Globalization.NumberStyles.HexNumber))/10000 ;
-
-            double Mq7_r0 = 25927.01;
-
-            double mq7_Rs_gas = (5.0 - Mq7_adc_double) / Mq7_adc_double;
-
-            double Mq7_ratio = mq7_Rs_gas / Mq7_r0;
-
-            double Mq7_x = 1538.46 * Mq7_ratio;
-
-             MQ7_PPM = Math.Pow(Mq7_x, (double)(-1.709));
-
-           // Mq7_ADC_textBox.Text = MQ7_PPM.ToString() + " voltage\n";
-
-            MQ7_C02_textbox.Text = MQ7_PPM.ToString() + " ppm\n"; /// 
-
-
-
-
-            //  Mq2_LPG = data_load.Substring(38, 4);
-
-            double Mq2_LPG_double = ((double)Int64.Parse(Universal.Mq2_LPG, System.Globalization.NumberStyles.HexNumber)) / 1000;
-            double Mq2_C02_double = ((double)Int64.Parse(Universal.Mq2_C02, System.Globalization.NumberStyles.HexNumber)) / 1000;
-            double Mq2_smoke_double = ((double)Int64.Parse(Universal.Mq2_smoke, System.Globalization.NumberStyles.HexNumber)) / 1000;
-
-
-             LPG_value = MQGetGasPercentage((float)Mq2_LPG_double, GAS_LPG);
-             MQ2_CO2 = MQGetGasPercentage((float)Mq2_C02_double, GAS_CO);
-             MQ2_smoke = MQGetGasPercentage((float)(Mq2_smoke_double), GAS_SMOKE);
-
-
-            LPG_textBox.Text = LPG_value.ToString() + "ppm \n";
-
-            co_MQ2_textbox.Text = MQ2_CO2.ToString() + "ppm \n";
-
-            smoke_MQ_2_textBox.Text = MQ2_smoke.ToString() + "ppm \n";
-
-
-          
-
-
-            }
-
-
-       
-            if (MoteCount == 2)
-            {
-                MoteCount = 0;
-
-                chart1.Series[0].Points.AddY(SNGCJA5_PM1_double);
-                chart1.Series[1].Points.AddY(SNGCJA5_PM2_5_double);
-                chart1.Series[2].Points.AddY(SNGCJA5_PM10_double);
-                //if (chart1.Series[2].Points.Count > 10)
-                //    chart1.Series[2].Points.RemoveAt(0);
-
-
-                chart2.Series[0].Points.AddY(SNGCJA5_P_count_0_5_double);
-                chart2.Series[1].Points.AddY(SNGCJA5_P_count_1_double);
-                chart2.Series[2].Points.AddY(SNGCJA5_P_count_2_5_double);
-                chart2.Series[3].Points.AddY(SNGCJA5_P_count_5_double);
-                chart2.Series[4].Points.AddY(SNGCJA5_P_count_7_5_double);
-
-                chart2.Series[5].Points.AddY(SNGCJA5_P_count_10_double);
-
-
-
-                chart3.Series[0].Points.AddY(AirQ_C02_double);
-           
-
-                chart4.Series[2].Points.AddY(AirQ_TVOC_double);
-         
-
-
-                //time++; // }
-
-                chart3.Series[2].Points.AddY(MQ7_PPM);
-           
-
-                //ploting 
-
-                chart3.Series[1].Points.AddY(MQ2_CO2);
-             
-
-
-                chart4.Series[0].Points.AddY(MQ2_smoke);
-             
-
-
-                chart4.Series[1].Points.AddY(LPG_value);
-
-
-
-
-                if (chart1.Series[0].Points.Count > 100)
-                {
-                    chart1.Series[0].Points.RemoveAt(0);
-                    chart1.Series[1].Points.RemoveAt(0);
-                    chart1.Series[2].Points.RemoveAt(0);
-
-                    chart2.Series[0].Points.RemoveAt(0);
-                    chart2.Series[1].Points.RemoveAt(0);
-                    chart2.Series[2].Points.RemoveAt(0);
-                    chart2.Series[3].Points.RemoveAt(0);
-                    chart2.Series[4].Points.RemoveAt(0);
-                    chart2.Series[5].Points.RemoveAt(0);
-
-                    chart3.Series[0].Points.RemoveAt(0);
-                    chart3.Series[1].Points.RemoveAt(0);
-                    chart3.Series[2].Points.RemoveAt(0);
-
-
-                    chart1.Series[0].Points.RemoveAt(0);
-                    chart1.Series[1].Points.RemoveAt(0);
-                    chart1.Series[2].Points.RemoveAt(0);
-
-
-                }
-
-          
-
-
-
-
-
-
-                chart1.ChartAreas[0].RecalculateAxesScale();
-                chart2.ChartAreas[0].RecalculateAxesScale();
-                chart3.ChartAreas[0].RecalculateAxesScale();
-                chart4.ChartAreas[0].RecalculateAxesScale();
-
-                this.Invoke(new EventHandler(UpdateSensorData));
-               
-            }
-
-
-            /*****************************  MQGetGasPercentage **********************************
-            Input:   rs_ro_ratio - Rs divided by Ro
-                     gas_id      - target gas type
-            Output:  ppm of the target gas
-            Remarks: This function passes different curves to the MQGetPercentage function which 
-                     calculates the ppm (parts per million) of the target gas.
-            ************************************************************************************/
-            int MQGetGasPercentage(float rs_ro_ratio, int gas_id)
-            {
-                if (gas_id == GAS_LPG)
-                {
-                    //rs_ro_ratio = 7.5F;
-                    return MQGetPercentage(rs_ro_ratio, LPGCurve);
-                }
-                else if (gas_id == GAS_CO)
-                {
-                    return MQGetPercentage(rs_ro_ratio, COCurve);
-                }
-                else if (gas_id == GAS_SMOKE)
-                {
-                    return MQGetPercentage(rs_ro_ratio, SmokeCurve);
-                }
-
-                return 0;
-            }
-
-            /*****************************  MQGetPercentage **********************************
-            Input:   rs_ro_ratio - Rs divided by Ro
-                     pcurve      - pointer to the curve of the target gas
-            Output:  ppm of the target gas
-            Remarks: By using the slope and a point of the line. The x(logarithmic value of ppm) 
-                     of the line could be derived if y(rs_ro_ratio) is provided. As it is a 
-                     logarithmic coordinate, power of 10 is used to convert the result to non-logarithmic 
-                     value.
-            ************************************************************************************/
-            int MQGetPercentage(float rs_ro_ratio, float[] pcurve)
-            {   //check the int Casting 
-
-                //  return (int)Math.Pow(10, (((Math.Log(rs_ro_ratio) - pcurve[1]) / pcurve[2]) + pcurve[0]));
-
-                // float[] LPGCurve = { 2.3f, 0.21f, -0.47f };
-
-
-
-                try
-                {
-                    double x = Math.Pow(10, (((Math.Log(rs_ro_ratio) - pcurve[1]) / pcurve[2]) + pcurve[0]));
-                    //return (int)Math.Pow(10, (((Math.Log(rs_ro_ratio) - pcurve[1]) / pcurve[2]) + pcurve[0]));
-                    int x_value = Convert.ToInt32(x);
-                    return x_value;
-                }
-                catch
-                {
-                    return 0;
-                }
-
-
-
-            }
-
-
-
-        }
+        
 
 
         #endregion
 
-
-
-
-        #region Sensors     //computing/displaying  Sensor data 
-
-
-        string Incoming_Data;
-        public void Oxygen_Sensor(object sender, EventArgs e)
-        {
-
-            string Oxygen_data = Incoming_Data;
-            // Oxygen =
-            string current_string = "Oxygen= ";
-            int string_lenght = current_string.Length;
-
-            int Start_Indext = Oxygen_data.IndexOf(current_string) + string_lenght;
-            int end_string = Oxygen_data.IndexOf(" E ") - Start_Indext;
-            String Oxygen_value = Oxygen_data.Substring(Start_Indext, end_string);
-
-
-            int OXG_int = Convert.ToInt32(Oxygen_value);
-
-            int OXG_persent = (25 / 23) * OXG_int;
-
-            Oxygen_Sensor_textbox.Text = OXG_persent.ToString() + "%";
-
-
-
-
-
-            Incoming_Data = " ";
-        }
-
-
-        public void AirQuality_Sensor(object sender, EventArgs e)
-        {
-
-            string AirQuality_data = Incoming_Data;
-
-
-            //Start
-            //C02: 0190  TVOC: 0000
-            //End
-
-
-            string current_string = "C02: ";
-            int string_lenght = current_string.Length;
-
-            int Start_Indext = AirQuality_data.IndexOf(current_string) + string_lenght;
-            String Co2_AirQuiality = AirQuality_data.Substring(Start_Indext, 5);
-
-
-
-            current_string = "TVOC: ";
-            string_lenght = current_string.Length;
-
-            Start_Indext = AirQuality_data.IndexOf(current_string) + string_lenght;
-            String TVOC_AirQuiality = AirQuality_data.Substring(Start_Indext, 5);
-
-
-
-
-
-            decimal Co2 = ((decimal)Int64.Parse(Co2_AirQuiality, System.Globalization.NumberStyles.HexNumber) / 400) - 1;
-
-            decimal TVOT = (decimal)Int64.Parse(TVOC_AirQuiality, System.Globalization.NumberStyles.HexNumber);
-
-            // SPG30_CO2 = Convert.ToDouble(Co2);
-            //SPG30_TVOT = Convert.ToDouble(TVOT);
-
-
-            //Air_Q_Co2.Text = Co2.ToString() + "ppm \n";
-            //Air_Q_TVOC.Text = TVOT.ToString() + "ppm \n";
-
-            //if (SPG30_CO2 != 0)
-            //{
-
-            //list.Add(time, MQ2_CO2);
-
-
-            //Air_Q_C02_list.Add(time, SPG30_CO2);
-            //Air_Q_TVOC_list.Add(time, SPG30_TVOT);
-            //zedGraphControl1.Invalidate();
-            //CreateChart(zedGraphControl1);
-
-
-
-            //}
-
-
-
-
-
-            // Incoming_Data = " ";
-
-        }
-
-        public void MQ7_Sensor(object sender, EventArgs e)
-        {
-
-            string MQ7_data = Incoming_Data;
-            // MQ7 =
-            string current_string = "CO2: ";
-            int string_lenght = current_string.Length;
-
-            int Start_Indext = MQ7_data.IndexOf(current_string) + string_lenght;
-            int end_string = MQ7_data.IndexOf(" p ") - Start_Indext;
-            String CO2_MQ7_value = MQ7_data.Substring(Start_Indext, 5);
-
-
-
-            double CO2_MQ7_int = Convert.ToInt32(CO2_MQ7_value) / 1000.000;
-            double MQ7_CO2_PPM = Math.Pow(CO2_MQ7_int, -1.709);
-
-
-            MQ7_C02_textbox.Text = MQ7_CO2_PPM.ToString();
-
-
-
-
-            //   MQ7_C02_textbox.Text = "0";
-
-
-            Incoming_Data = " ";
-        }
-
-
-
-
-        public void Sensor_display(object sender, EventArgs e)
-        {
-
-
-            try
-            {
-
-                string sensor_data = Incoming_Data;
-
-                //LPG: 9811
-                //CO: 9813
-                //SMOKE: 9791
-
-                /***************************** Smoke Sensor MQ - 2  *********************************/
-                // Sensor temperature 
-                String current_string = "LPG: ";
-                int string_lenght = current_string.Length;
-
-                int Start_Indext = sensor_data.IndexOf(current_string) + string_lenght;
-                // int End_Indext = sensor_data.IndexOf("CO: ");
-                // int lenght_difference = End_Indext - Start_Indext;
-                String LPG_string = sensor_data.Substring(Start_Indext, 5);
-
-
-                float LPG;
-
-                //  if (Convert.ToDouble(LPG_string) == 0)
-                //  {
-
-                //      LPG = (float)(Convert.ToDouble(LPG_string));
-                //  }
-                // else {  
-
-
-                LPG = (float)(Convert.ToDouble(LPG_string)) / 1000;
-
-
-
-                //  Temperature_textBox.Text = LPG.ToString();
-
-
-
-
-
-                /*****************************  Smoke Sensor MQ - 2  **************************/
-
-                current_string = "CO: ";
-                string_lenght = current_string.Length;
-
-                Start_Indext = sensor_data.IndexOf(current_string) + string_lenght;
-                // int End_Indext = sensor_data.IndexOf("Carbon");
-                // int lenght_difference = End_Indext - Start_Indext;
-                String Carbon_Monoxide_data = sensor_data.Substring(Start_Indext, 5);
-
-
-
-
-                float Carbon_Monoxide_Value = (float)(Convert.ToDouble(Carbon_Monoxide_data)) / 1000;
-
-                // Carbon_textbox.Text = Carbon_Monoxide_Value.ToString();
-
-
-
-
-                /*****************************  Smoke Sensor MQ - 2  **********************************/
-                current_string = "SMOKE: ";
-                string_lenght = current_string.Length;
-
-                Start_Indext = sensor_data.IndexOf(current_string) + string_lenght;
-                // int End_Indext = sensor_data.IndexOf("Carbon");
-                // int lenght_difference = End_Indext - Start_Indext;
-                String Smoke_Sensor_MQ_2_data = sensor_data.Substring(Start_Indext, 5);
-
-
-
-
-                double Smoke_Sensor_MQ_2_Value = Convert.ToDouble(Smoke_Sensor_MQ_2_data) / 1000;
-
-                LPG_textBox.Text = Smoke_Sensor_MQ_2_Value.ToString();
-
-
-
-                /*****************************  Temp  **********************************/
-                current_string = "Temperature= ";
-                string_lenght = current_string.Length;
-
-                Start_Indext = sensor_data.IndexOf(current_string) + string_lenght;
-                // int End_Indext = sensor_data.IndexOf("Carbon");
-                // int lenght_difference = End_Indext - Start_Indext;
-                String Temp = sensor_data.Substring(Start_Indext, 5);
-
-
-
-
-                double temp_value = (Convert.ToDouble(Temp) / 100) * (9 / 5) + 32;
-
-
-
-                Temperature_textBox.Text = temp_value.ToString();
-
-
-
-
-                //  Incoming_Data = " ";
-
-
-
-
-                /************************Hardware Related Macros************************************/
-                int MQ_PIN = 0;                          //define which analog input channel you are going to use
-                int RL_VALUE = 5;                     //(10)     //define the load resistance on the board, in kilo ohms
-                float RO_CLEAN_AIR_FACTOR = 9.83f;            //RO_CLEAR_AIR_FACTOR=(Sensor resistance in clean air)/RO,
-                                                              //which is derived from the chart in datasheet
-
-                /***********************Software Related Macros************************************/
-                int CALIBARAION_SAMPLE_TIMES = 50;        // (50)    //define how many samples you are going to take in the calibration phase
-                int CALIBRATION_SAMPLE_INTERVAL = 500;           //(500)   //define the time interal(in milisecond) between each samples in the
-                                                                 //cablibration phase
-                int READ_SAMPLE_INTERVAL = 50;     //(50)    //define how many samples you are going to take in normal operation
-                int READ_SAMPLE_TIMES = 5;            //(5)     //define the time interal(in milisecond) between each samples in 
-                                                      //normal operation
-
-                /**********************Application Related Macros**********************************/
-                int GAS_LPG = 0;               // (0)
-                int GAS_CO = 1;                    // (1)
-                int GAS_SMOKE = 2;                //  (2)
-
-                /*****************************Globals***********************************************/
-                float[] LPGCurve = { 2.3f, 0.21f, -0.47f };   //two points are taken from the curve. 
-                                                              //with these two points, a line is formed which is "approximately equivalent"
-                                                              //to the original curve. 
-                                                              //data format:{ x, y, slope}; point1: (lg200, 0.21), point2: (lg10000, -0.59) 
-                float[] COCurve = { 2.3f, 0.72f, -0.34f };    //two points are taken from the curve. 
-                                                              //with these two points, a line is formed which is "approximately equivalent" 
-                                                              //to the original curve.
-                                                              //data format:{ x, y, slope}; point1: (lg200, 0.72), point2: (lg10000,  0.15) 
-                float[] SmokeCurve = { 2.3f, 0.53f, -0.44f };    //two points are taken from the curve. 
-                                                                 //with these two points, a line is formed which is "approximately equivalent" 
-                                                                 //to the original curve.
-                                                                 //data format:{ x, y, slope}; point1: (lg200, 0.53), point2: (lg10000,  -0.22)                                                     
-                float Ro = 10;                 //Ro is initialized to 10 kilo ohms
-
-                //void setup()
-                //{
-                //    Serial.begin(9600);                               //UART setup, baudrate = 9600bps
-                //    Serial.print("Calibrating...\n");
-                //    Ro = MQCalibration(MQ_PIN);                       //Calibrating the sensor. Please make sure the sensor is in clean air 
-                //                                                      //when you perform the calibration                    
-                //    Serial.print("Calibration is done...\n");
-                //    Serial.print("Ro=");
-                //    Serial.print(Ro);
-                //    Serial.print("kohm");
-                //    Serial.print("\n");
-                //}
-
-
-
-                //if (Calib_Smpl_Counter == 0)
-                //{
-                //    tBoxDataIN.Text += "Calibrating...\n";
-                //    tBoxDataIN.Text += "R0= \n";
-
-                //    Ro = MQCalibration(MQ_PIN);
-
-                //    tBoxDataIN.Text += Ro.ToString() + "  Kohm \n";
-
-                //}
-                //else {
-
-                //   // tBoxDataIN.Text += "LPG:" + MQGetGasPercentage(MQRead(MQ_PIN) / Ro, GAS_LPG).ToString() + "ppm \n";
-
-                //    co_MQ2_textbox.Text =  MQGetGasPercentage(MQRead(MQ_PIN) / Ro, GAS_CO).ToString() + "ppm \n";
-
-                //   smoke_MQ_2_textBox.Text =  MQGetGasPercentage(MQRead(MQ_PIN) / Ro, GAS_SMOKE).ToString() + "ppm \n";
-
-
-
-                //}
-
-
-
-                //if (Carbon_Monoxide_Value > 1500)
-                //{
-                //    string LPG_ppm = (MQGetGasPercentage(LPG, GAS_LPG)/1000).ToString();
-                //    LPG_textBox.Text = "ppm \n";
-
-
-                //    co_MQ2_textbox.Text = MQGetGasPercentage(Carbon_Monoxide_Value/10000, GAS_CO).ToString() + "ppm \n";
-
-                //    smoke_MQ_2_textBox.Text = MQGetGasPercentage((float)(Smoke_Sensor_MQ_2_Value)/1000, GAS_SMOKE).ToString() + "ppm \n";
-
-                //}
-                //else {
-
-
-                int LPG_value = MQGetGasPercentage(LPG, GAS_LPG);
-                int MQ2_CO2 = MQGetGasPercentage(Carbon_Monoxide_Value, GAS_CO);
-                int MQ2_smoke = MQGetGasPercentage((float)(Smoke_Sensor_MQ_2_Value), GAS_SMOKE);
-
-
-                LPG_textBox.Text = LPG_value.ToString() + "ppm \n";
-
-                co_MQ2_textbox.Text = MQGetGasPercentage(Carbon_Monoxide_Value, GAS_CO).ToString() + "ppm \n";
-
-                smoke_MQ_2_textBox.Text = MQGetGasPercentage((float)(Smoke_Sensor_MQ_2_Value), GAS_SMOKE).ToString() + "ppm \n";
-
-
-
-
-
-
-
-                //  if (MQ2_CO2 != 0) { 
-
-                //MQ2_CO2_list.Add(time, MQ2_CO2);
-                //MQ2_LPG_list.Add(time, LPG_value);
-                //MQ2_Smoke_list.Add(time, MQ2_smoke);
-
-                //temp_list.Add(time, temp_value);
-
-                // list2.Add(time, SPG30_CO2);
-                //zedGraphControl1.Invalidate();
-                //CreateChart(zedGraphControl1);
-
-
-                //addToRecord(time.ToString(), MQ2_CO2.ToString(), LPG_value.ToString(), MQ2_smoke.ToString(), temp_value.ToString(), SPG30_TVOT.ToString(), SPG30_CO2.ToString(), "SensorINFO.txt");
-                // addToRecord("2", "Fathi", "fathi.txt");
-
-
-
-
-
-                //list2.Add(time, 123);
-                //zedGraphControl2.Invalidate();
-                //CreateChart(zedGraphControl2);
-
-                //}
-
-
-
-               // time++; // }
-
-
-
-
-                /*****************************  MQGetGasPercentage **********************************
-                Input:   rs_ro_ratio - Rs divided by Ro
-                         gas_id      - target gas type
-                Output:  ppm of the target gas
-                Remarks: This function passes different curves to the MQGetPercentage function which 
-                         calculates the ppm (parts per million) of the target gas.
-                ************************************************************************************/
-                int MQGetGasPercentage(float rs_ro_ratio, int gas_id)
-                {
-                    if (gas_id == GAS_LPG)
-                    {
-                        //rs_ro_ratio = 7.5F;
-                        return MQGetPercentage(rs_ro_ratio, LPGCurve);
-                    }
-                    else if (gas_id == GAS_CO)
-                    {
-                        return MQGetPercentage(rs_ro_ratio, COCurve);
-                    }
-                    else if (gas_id == GAS_SMOKE)
-                    {
-                        return MQGetPercentage(rs_ro_ratio, SmokeCurve);
-                    }
-
-                    return 0;
-                }
-
-                /*****************************  MQGetPercentage **********************************
-                Input:   rs_ro_ratio - Rs divided by Ro
-                         pcurve      - pointer to the curve of the target gas
-                Output:  ppm of the target gas
-                Remarks: By using the slope and a point of the line. The x(logarithmic value of ppm) 
-                         of the line could be derived if y(rs_ro_ratio) is provided. As it is a 
-                         logarithmic coordinate, power of 10 is used to convert the result to non-logarithmic 
-                         value.
-                ************************************************************************************/
-                int MQGetPercentage(float rs_ro_ratio, float[] pcurve)
-                {   //check the int Casting 
-
-                    //  return (int)Math.Pow(10, (((Math.Log(rs_ro_ratio) - pcurve[1]) / pcurve[2]) + pcurve[0]));
-
-                    // float[] LPGCurve = { 2.3f, 0.21f, -0.47f };
-
-
-
-                    try
-                    {
-                        double x = Math.Pow(10, (((Math.Log(rs_ro_ratio) - pcurve[1]) / pcurve[2]) + pcurve[0]));
-                        //return (int)Math.Pow(10, (((Math.Log(rs_ro_ratio) - pcurve[1]) / pcurve[2]) + pcurve[0]));
-                        int x_value = Convert.ToInt32(x);
-                        return x_value;
-                    }
-                    catch
-                    {
-                        return 0;
-                    }
-
-
-
-                }
-
-
-            }
-
-            catch { }
-
-
-        }
-
-
-
-
-        #endregion
 
 
 
@@ -1480,7 +578,7 @@ namespace SMIP_Network
                 if (sendingSerial_fmPHone != oldValues)
                 {
 
-                    receiverTextBox.Text = sendingSerial_fmPHone.ToLower();
+                    //receiverTextBox.Text = sendingSerial_fmPHone.ToLower();
 
                     Universal.dataOUT = sendingSerial_fmPHone.ToLower();
 
@@ -1807,7 +905,8 @@ namespace SMIP_Network
 
         #endregion
 
-        private void btnSendData_Click(object sender, EventArgs e)
+
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }
