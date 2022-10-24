@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMIP_Network", "SMIP_Network.csproj", "{D01642A2-0821-46C0-A995-64173539C9CC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "myLibrary", "myLibrary\myLibrary.csproj", "{C216A138-E269-4B1A-9CBC-EFF0146D23ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D01642A2-0821-46C0-A995-64173539C9CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D01642A2-0821-46C0-A995-64173539C9CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D01642A2-0821-46C0-A995-64173539C9CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D01642A2-0821-46C0-A995-64173539C9CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C216A138-E269-4B1A-9CBC-EFF0146D23ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C216A138-E269-4B1A-9CBC-EFF0146D23ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C216A138-E269-4B1A-9CBC-EFF0146D23ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C216A138-E269-4B1A-9CBC-EFF0146D23ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0CCD4F5A-3E99-45D2-A8AA-BF661A15E750}
+	EndGlobalSection
+EndGlobal
