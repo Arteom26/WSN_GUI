@@ -147,7 +147,7 @@ namespace SMIP_Network
         {
 
             if (!serialPort1.IsOpen) { 
-            CBoxBaudRate.Text = "9600"; //Default Value
+            //CBoxBaudRate.Text = "115"; //Default Value
             string[] portLists = SerialPort.GetPortNames();
            // cBoxCOMPORT.Items.AddRange(portLists);
 
@@ -249,9 +249,11 @@ namespace SMIP_Network
                 switch (buffer[0])
                 {
                     case 'A':// Network ID was set
+                        MessageBox.Show("Network ID was Set!");
                         break;
 
                     case 'B':// Join Key was set
+                        MessageBox.Show("Join Key was Set!");
                         break;
 
                     case 'C':// Mote list was recieved
@@ -292,9 +294,13 @@ namespace SMIP_Network
                             objForm1.bluetoothData.chart1.Series["hex"].Points.AddY(long.Parse(dat));
                         }
                         break;
+
+                    case 'J':// Get network manager config
+                        MessageBox.Show("Recived Config!");
+                        break;
                        
                     default:
-                        MessageBox.Show("Invalid Command Recieved!!");
+                        //MessageBox.Show("Invalid Command Recieved!!");
                         break;
                 }
             }
@@ -657,9 +663,7 @@ namespace SMIP_Network
             {
                 short net = short.Parse(textBox1.Text);// Get the network ID
                 byte[] netid = BitConverter.GetBytes(net);
-                byte temp = netid[0];// Convert to big endian
-                netid[0] = netid[1];
-                netid[1] = temp;
+                (netid[1], netid[0]) = (netid[0], netid[1]);// Convert to big endian
                 if (textBox2.Text.Length > 32)
                     throw (new Exception("Invalid Join Key"));
 
@@ -668,6 +672,8 @@ namespace SMIP_Network
                     jkey = StringToByteArray(textBox2.Text);
                 else
                     jkey = StringToByteArray(textBox2.Text + "0");
+
+                Array.Resize<byte>(ref jkey, 32);
 
                 serialPort1.Write("A");// Send the network ID
                 serialPort1.Write(netid, 0, 2);
@@ -716,6 +722,11 @@ namespace SMIP_Network
                 MessageBox.Show("Error! Invalid Values!");
             }
             
+        }
+
+        private void groupBox7_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
