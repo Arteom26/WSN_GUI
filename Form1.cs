@@ -242,16 +242,20 @@ namespace SMIP_Network
 
 
 
+
+
+
+
+
+
+
+
         #endregion
 
+        private void panelMain_Paint(object sender, PaintEventArgs e)
+        {
 
-
-
-
-
-
-
-
+        }
     }
 
 }

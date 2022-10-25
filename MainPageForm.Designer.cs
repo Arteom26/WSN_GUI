@@ -44,13 +44,10 @@ namespace SMIP_Network
             this.CBoxBaudRate = new System.Windows.Forms.ComboBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
-            this.networkStatisticsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.topographyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.sensorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.connectButton = new System.Windows.Forms.Button();
@@ -59,13 +56,36 @@ namespace SMIP_Network
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.charLabel = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.CBoxMoteList = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -232,22 +252,10 @@ namespace SMIP_Network
             this.progressBar1.Size = new System.Drawing.Size(1056, 43);
             this.progressBar1.TabIndex = 55;
             // 
-            // networkStatisticsToolStripMenuItem
-            // 
-            this.networkStatisticsToolStripMenuItem.Name = "networkStatisticsToolStripMenuItem";
-            this.networkStatisticsToolStripMenuItem.Size = new System.Drawing.Size(374, 59);
-            this.networkStatisticsToolStripMenuItem.Text = "Network Statistics";
-            // 
-            // topographyToolStripMenuItem
-            // 
-            this.topographyToolStripMenuItem.Name = "topographyToolStripMenuItem";
-            this.topographyToolStripMenuItem.Size = new System.Drawing.Size(267, 59);
-            this.topographyToolStripMenuItem.Text = "Topography";
-            // 
             // clearToolStripMenuItem
             // 
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(317, 68);
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(538, 68);
             this.clearToolStripMenuItem.Text = "Clear";
             // 
             // fileToolStripMenuItem
@@ -269,39 +277,30 @@ namespace SMIP_Network
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(259, 48);
             this.toolStripStatusLabel1.Text = "No Connection";
             // 
-            // sensorToolStripMenuItem
-            // 
-            this.sensorToolStripMenuItem.Name = "sensorToolStripMenuItem";
-            this.sensorToolStripMenuItem.Size = new System.Drawing.Size(190, 59);
-            this.sensorToolStripMenuItem.Text = "Sensors";
-            // 
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolStripProgressBar1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 2553);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 1809);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 38, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(3793, 63);
+            this.statusStrip1.Size = new System.Drawing.Size(3350, 63);
             this.statusStrip1.TabIndex = 59;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // menuStrip1
             // 
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.topographyToolStripMenuItem,
-            this.networkStatisticsToolStripMenuItem,
-            this.sensorToolStripMenuItem});
+            this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(21, 4, 0, 4);
-            this.menuStrip1.Size = new System.Drawing.Size(3793, 67);
+            this.menuStrip1.Size = new System.Drawing.Size(3350, 67);
             this.menuStrip1.TabIndex = 60;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -333,12 +332,13 @@ namespace SMIP_Network
             this.button1.TabIndex = 64;
             this.button1.Text = "Setup Settings";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.textBox2);
             this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.charLabel);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.label6);
@@ -350,7 +350,6 @@ namespace SMIP_Network
             this.groupBox2.Size = new System.Drawing.Size(912, 655);
             this.groupBox2.TabIndex = 52;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "NETWORK MANAGER SETUP";
             // 
             // label6
             // 
@@ -384,21 +383,21 @@ namespace SMIP_Network
             this.label7.Text = "Network ID:";
             this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
-            // label9
+            // charLabel
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(302, 353);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(281, 37);
-            this.label9.TabIndex = 69;
-            this.label9.Text = "32 Characters Left";
+            this.charLabel.AutoSize = true;
+            this.charLabel.Location = new System.Drawing.Point(474, 343);
+            this.charLabel.Name = "charLabel";
+            this.charLabel.Size = new System.Drawing.Size(281, 37);
+            this.charLabel.TabIndex = 69;
+            this.charLabel.Text = "32 Characters Left";
             // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(347, 172);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(462, 62);
+            this.textBox1.Size = new System.Drawing.Size(554, 62);
             this.textBox1.TabIndex = 70;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -407,16 +406,243 @@ namespace SMIP_Network
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(286, 264);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(526, 62);
+            this.textBox2.Size = new System.Drawing.Size(615, 62);
             this.textBox2.TabIndex = 71;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.button3);
+            this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Controls.Add(this.CBoxMoteList);
+            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Location = new System.Drawing.Point(17, 753);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(716, 682);
+            this.groupBox3.TabIndex = 61;
+            this.groupBox3.TabStop = false;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Marlett", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(136, 40);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(376, 65);
+            this.label10.TabIndex = 68;
+            this.label10.Text = "Mote Controls";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.SteelBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.Transparent;
+            this.button2.Location = new System.Drawing.Point(50, 259);
+            this.button2.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(614, 161);
+            this.button2.TabIndex = 72;
+            this.button2.Text = "Get Mote List";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label15);
+            this.groupBox4.Controls.Add(this.label14);
+            this.groupBox4.Controls.Add(this.label13);
+            this.groupBox4.Controls.Add(this.label12);
+            this.groupBox4.Controls.Add(this.label11);
+            this.groupBox4.Location = new System.Drawing.Point(760, 753);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(1115, 682);
+            this.groupBox4.TabIndex = 62;
+            this.groupBox4.TabStop = false;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Marlett", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(411, 40);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(339, 65);
+            this.label11.TabIndex = 73;
+            this.label11.Text = "Mote Details";
+            // 
+            // CBoxMoteList
+            // 
+            this.CBoxMoteList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CBoxMoteList.FormattingEnabled = true;
+            this.CBoxMoteList.Location = new System.Drawing.Point(321, 138);
+            this.CBoxMoteList.Name = "CBoxMoteList";
+            this.CBoxMoteList.Size = new System.Drawing.Size(389, 63);
+            this.CBoxMoteList.TabIndex = 73;
+            this.CBoxMoteList.SelectedIndexChanged += new System.EventHandler(this.CBoxMoteList_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Marlett", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(26, 136);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(289, 65);
+            this.label9.TabIndex = 72;
+            this.label9.Text = "Mote List: ";
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.Crimson;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.Transparent;
+            this.button3.Location = new System.Drawing.Point(50, 455);
+            this.button3.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(614, 161);
+            this.button3.TabIndex = 74;
+            this.button3.Text = "Clear List";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Marlett", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(33, 138);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(402, 65);
+            this.label12.TabIndex = 75;
+            this.label12.Text = "MAC Address: ";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Marlett", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(33, 238);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(256, 65);
+            this.label13.TabIndex = 76;
+            this.label13.Text = "Mote ID: ";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Marlett", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(33, 339);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(305, 65);
+            this.label14.TabIndex = 77;
+            this.label14.Text = "TX Power: ";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Marlett", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(33, 434);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(302, 65);
+            this.label15.TabIndex = 78;
+            this.label15.Text = "Join Time: ";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.textBox3);
+            this.groupBox5.Controls.Add(this.comboBox1);
+            this.groupBox5.Controls.Add(this.button4);
+            this.groupBox5.Controls.Add(this.label18);
+            this.groupBox5.Controls.Add(this.label17);
+            this.groupBox5.Controls.Add(this.label16);
+            this.groupBox5.Location = new System.Drawing.Point(1886, 86);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(1452, 674);
+            this.groupBox5.TabIndex = 63;
+            this.groupBox5.TabStop = false;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Marlett", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(499, 48);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(485, 65);
+            this.label16.TabIndex = 72;
+            this.label16.Text = "Single Mote Setup";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(163, 59);
+            this.aboutToolStripMenuItem.Text = "About";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Marlett", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(6, 144);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(465, 65);
+            this.label17.TabIndex = 72;
+            this.label17.Text = "Graph to Plot On:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Marlett", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(19, 255);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(431, 65);
+            this.label18.TabIndex = 73;
+            this.label18.Text = "Name of Series:";
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.ForestGreen;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.ForeColor = System.Drawing.Color.Transparent;
+            this.button4.Location = new System.Drawing.Point(432, 417);
+            this.button4.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(614, 161);
+            this.button4.TabIndex = 72;
+            this.button4.Text = "Update Graphs";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Graph 1",
+            "Graph 2",
+            "Graph 3",
+            "Graph 4",
+            "Graph 5",
+            "Graph 6"});
+            this.comboBox1.Location = new System.Drawing.Point(497, 146);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(925, 63);
+            this.comboBox1.TabIndex = 74;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(497, 270);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(925, 62);
+            this.textBox3.TabIndex = 72;
             // 
             // MainPageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(3844, 1872);
+            this.ClientSize = new System.Drawing.Size(3350, 1872);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -434,6 +660,12 @@ namespace SMIP_Network
             this.menuStrip1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -453,13 +685,10 @@ namespace SMIP_Network
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.IO.Ports.SerialPort serialPort1;
         public System.IO.Ports.SerialPort serialPort;
-        private System.Windows.Forms.ToolStripMenuItem networkStatisticsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem topographyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         public System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         public System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripMenuItem sensorToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ComboBox comPortComboBox;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -469,8 +698,28 @@ namespace SMIP_Network
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label charLabel;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox CBoxMoteList;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

@@ -65,6 +65,15 @@ namespace SMIP_Network
 
         }
 
+        public static byte[] StringToByteArray(string hex)
+        {
+            byte[] temp = new byte[hex.Length / 2];
+            for(int i = 0,h = 0; h < hex.Length; i++, h += 2)
+            {
+                temp[i] = (byte)Int32.Parse(hex.Substring(h,2),System.Globalization.NumberStyles.HexNumber);
+            }
+            return temp;
+        }
 
         private void connectButton_Click(object sender, EventArgs e)
         {
@@ -134,22 +143,6 @@ namespace SMIP_Network
             }
 
         }
-
-
-
-
-        //private void clearToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    receiverTextBox.Text = "";
-        //}
-
-        //private void networkStatisticsToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    Form2 _Reliability = new Form2(this);
-        //    _Reliability.Show();
-
-        //}
-
 
         private void MainPageForm_Load(object sender, EventArgs e)
         {
@@ -581,301 +574,6 @@ namespace SMIP_Network
 
         #endregion
 
-        #region Fathi_old serial functions 
-
-
-
-        //private void button11_Click(object sender, EventArgs e)
-        //{
-
-        //}
-
-        //private void btnSendData_Click(object sender, EventArgs e)
-        //{
-        //    TxSendData();
-        //}
-
-
-
-
-        //private void Open_button_Click(object sender, EventArgs e)
-        //{
-        //    //addToRecord("1", "Fathi", "fathi.txt");
-        //    //addToRecord("2", "Fathi", "fathi.txt");
-        //    try
-        //    {
-        //        serialPort1.PortName = cBoxCOMPORT.Text;
-        //        serialPort1.BaudRate = Convert.ToInt32(CBoxBaudRate.Text);
-        //        serialPort1.DataBits = Convert.ToInt32(cBoxDataBits.Text);
-        //        serialPort1.StopBits = (StopBits)Enum.Parse(typeof(StopBits), cBoxStopBits.Text);
-        //        serialPort1.Parity = (Parity)Enum.Parse(typeof(Parity), cBoxParityBits.Text);
-
-        //        serialPort1.Open();
-        //        progressBar1.Value = 100;
-        //        // LiveCall();
-        //       // this.Invoke(new EventHandler(LiveCall));
-        //    }
-
-        //    catch (Exception err)
-        //    {
-        //        MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
-
-        //private void close_button_Click(object sender, EventArgs e)
-        //{
-        //    if (serialPort1.IsOpen)
-        //    {
-        //        serialPort1.Close();
-        //        progressBar1.Value = 0;
-        //    }
-        //}
-
-
-
-        //private void cBoxCOMPORT_DropDown(object sender, EventArgs e)
-        //{
-        //    string[] ports = SerialPort.GetPortNames();
-        //    //cBoxCOMPORT.Items.Clear();
-        //    cBoxCOMPORT.Items.AddRange(ports);
-        //}
-
-
-
-
-
-        //private void cLOSEToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    if (serialPort1.IsOpen)
-        //    {
-        //        serialPort1.Close();
-        //        progressBar1.Value = 0;
-        //    }
-        //}
-
-
-
-        //public void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
-        //{
-        //    //dataIN = serialPort1.ReadExisting();
-
-        //    List<int> dataBuffer = new List<int>();
-
-        //    while (serialPort1.BytesToRead > 0)
-        //    {
-        //        try
-        //        {
-        //            dataBuffer.Add(serialPort1.ReadByte());
-        //        }
-        //        catch (Exception error)
-        //        {
-        //            MessageBox.Show(error.Message);
-        //        }
-        //    }
-
-        //    dataINLength = dataBuffer.Count();
-        //    dataInDec = new int[dataINLength];
-        //    dataInDec = dataBuffer.ToArray();
-
-        //    this.Invoke(new EventHandler(ShowData));
-
-        //}
-
-        //#region RX Data Format
-        //private string RxDataFormat(int[] dataInput)
-        //{
-        //    string strOut = "";
-
-
-
-        //    foreach (int element in dataInput)
-        //    {
-        //        strOut += Convert.ToChar(element);
-        //    }
-
-        //    return strOut;
-        //}
-        //#endregion
-
-
-        //private void ShowData(object sender, EventArgs e)
-        //{
-        //    //int dataINLength = dataIN.Length;
-
-        //    dataIN = RxDataFormat(dataInDec);
-
-        //    tBoxDataIN.Text += dataIN;
-        //   // Incoming_Data += dataIN;
-
-        //    // tBoxDataIN.Text += dataIN;
-        //}
-
-        //private void oPENToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        serialPort1.PortName = cBoxCOMPORT.Text;
-        //        serialPort1.BaudRate = Convert.ToInt32(CBoxBaudRate.Text);
-        //        serialPort1.DataBits = Convert.ToInt32(cBoxDataBits.Text);
-        //        serialPort1.StopBits = (StopBits)Enum.Parse(typeof(StopBits), cBoxStopBits.Text);
-        //        serialPort1.Parity = (Parity)Enum.Parse(typeof(Parity), cBoxParityBits.Text);
-
-        //        serialPort1.Open();
-        //        progressBar1.Value = 100;
-        //    }
-
-        //    catch (Exception err)
-        //    {
-        //        MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
-
-        //private void TxDataFormat()
-        //{
-        //  string  toolStripComboBox_TxDataFormat = "Char";
-        //    if (toolStripComboBox_TxDataFormat == "Char")
-        //    {
-        //        //Send the data in the textbox via serial port
-        //        serialPort1.Write(tBoxDataOut.Text);
-
-        //        //Calculate the length of the data sent and then show it
-        //        int dataOUTLength = tBoxDataOut.TextLength;
-        //      //  lblDataOutLength.Text = string.Format("{0:00}", dataOUTLength);
-        //    }
-        //    else
-        //    {
-        //        //Declare Local Variable
-        //        string dataOutBuffer;
-        //        int countComma = 0;
-        //        string[] dataPrepareToSend;
-        //        byte[] dataToSend;
-
-        //        try
-        //        {
-        //            //Move the data package in the textbox into a variable
-        //            dataOutBuffer = tBoxDataOut.Text;
-
-        //            //Count how much comma (,) punctuation in the data package
-        //            foreach (char c in dataOutBuffer) { if (c == ',') { countComma++; } }
-
-        //            //Create one-dimensional array (string data type) with the length based on the countComma
-        //            dataPrepareToSend = new string[countComma];
-
-        //            //Parsing the data in dataOutBuffer and save it into an array dataPrepareToSend based on comma punctuation
-        //            countComma = 0; //Reset Value to 0
-        //            foreach (char c in dataOutBuffer)
-        //            {
-        //                if (c != ',')
-        //                {
-        //                    //Append the data to array of dataPrepareToSend
-        //                    dataPrepareToSend[countComma] += c;
-        //                }
-        //                else
-        //                {
-        //                    //If a comma finds in the data package, then increase the countComma variable. CountComma is using to determine the index of dataPrepareToSend array
-        //                    countComma++;
-        //                    //Stop foreach process if numbers of countComma equal to the size of dataPrepareToSend
-        //                    if (countComma == dataPrepareToSend.GetLength(0)) { break; }
-        //                }
-        //            }
-
-        //            //Create one-dimensional array (byte data type) with the length based on the size of dataPrepareToSend
-        //            dataToSend = new byte[dataPrepareToSend.Length];
-
-        //            if (toolStripComboBox_TxDataFormat == "Hex")
-        //            {
-        //                //Convert data in string array (dataPrepareToSend) into byte array(dataToSend)
-        //                for (int a = 0; a < dataPrepareToSend.Length; a++)
-        //                {
-        //                    dataToSend[a] = Convert.ToByte(dataPrepareToSend[a], 16);
-        //                    //Convert string to an 8-bit unsigned integer with the specified base number
-        //                    //Value 16 mean Hexa
-        //                }
-        //            }
-        //            else if (toolStripComboBox_TxDataFormat == "Binary")
-        //            {
-        //                //Convert data in string array (dataPrepareToSend) into byte array(dataToSend)
-        //                for (int a = 0; a < dataPrepareToSend.Length; a++)
-        //                {
-        //                    dataToSend[a] = Convert.ToByte(dataPrepareToSend[a], 2);
-        //                    //Convert string to an 8-bit unsigned integer with the specified base number
-        //                    //Value 2 mean Binary
-        //                }
-        //            }
-        //            else if (toolStripComboBox_TxDataFormat == "Decimal")
-        //            {
-        //                //Convert data in string array (dataPrepareToSend) into byte array(dataToSend)
-        //                for (int a = 0; a < dataPrepareToSend.Length; a++)
-        //                {
-        //                    dataToSend[a] = Convert.ToByte(dataPrepareToSend[a], 10);
-        //                    //Convert string to an 8-bit unsigned integer with the specified base number
-        //                    //Value 10 mean Decimal
-        //                }
-        //            }
-
-        //            //Send a specified number of bytes to the serial port
-        //            serialPort1.Write(dataToSend, 0, dataToSend.Length);
-
-        //            //Calculate the length of data sent and then show it
-        //           // lblDataOutLength.Text = string.Format("{0:00}", dataToSend.Length);
-        //        }
-        //        catch (Exception error)
-        //        {
-        //            MessageBox.Show(error.Message);
-        //        }
-        //    }
-        //}
-
-        //private void TxSendData()
-        //{
-        //    if (serialPort1.IsOpen)
-        //    {
-        //        //dataOUT = tBoxDataOut.Text;
-        //        if (sendWith == "None")
-        //        {
-        //            //serialPort1.Write(dataOUT);
-        //            TxDataFormat();
-        //        }
-        //        else if (sendWith == @"Both (\r\n)")
-        //        {
-        //            //serialPort1.Write(dataOUT + "\r\n");
-        //            TxDataFormat();
-        //            serialPort1.Write("\r\n");
-        //        }
-        //        else if (sendWith == @"New Line (\n)")
-        //        {
-        //            //serialPort1.Write(dataOUT + "\n");
-        //            TxDataFormat();
-        //            serialPort1.Write("\n");
-        //        }
-        //        else if (sendWith == @"Carriage Return (\r)")
-        //        {
-        //            //serialPort1.Write(dataOUT + "\r");
-        //            TxDataFormat();
-        //            serialPort1.Write("\r");
-        //        }
-        //    }
-        //    //if (clearToolStripMenuItem.Checked)
-        //    //{
-        //    //    if (tBoxDataOut.Text != "")
-        //    //    {
-        //    //        tBoxDataOut.Text = "";
-        //    //    } }
-
-        //}
-
-        //private void tBoxDataIN_TextChanged(object sender, EventArgs e)
-        //{
-        //    tBoxDataIN.ScrollBars = ScrollBars.Vertical;
-        //    tBoxDataIN.SelectionStart = tBoxDataIN.Text.Length;
-        //    tBoxDataIN.ScrollToCaret();
-        //}
-
-
-
-
-        #endregion
-
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
@@ -895,6 +593,79 @@ namespace SMIP_Network
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            int len = 32 - textBox2.Text.Length;
+            charLabel.Text = len.ToString() + " Charcters Left";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                short net = short.Parse(textBox1.Text);// Get the network ID
+                byte[] netid = BitConverter.GetBytes(net);
+                byte temp = netid[0];// Convert to big endian
+                netid[0] = netid[1];
+                netid[1] = temp;
+                if (textBox2.Text.Length > 32)
+                    throw (new Exception("Invalid Join Key"));
+
+                byte[] jkey = new byte[32];// Setup byte array for serial port sending
+                if(textBox2.Text.Length % 2 == 0)// Fix error for odd length of strings
+                    jkey = StringToByteArray(textBox2.Text);
+                else
+                    jkey = StringToByteArray(textBox2.Text + "0");
+
+                serialPort1.Write("A");// Send the network ID
+                serialPort1.Write(netid, 0, 2);
+                serialPort1.Write("B");// Send the join key
+                serialPort1.Write(jkey, 0, 32);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Please Enter Valid Values!!\nError: " + ex.Message);
+            }
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                serialPort.Write("C");// Get the mote list and process in the handler
+            }
+            catch
+            {
+                MessageBox.Show("Error! Serial Port not Open");
+            }
+            
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            CBoxMoteList.Items.Clear();// Clear all the items in the list
+        }
+
+        private void CBoxMoteList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                byte[] mac_addr = new byte[8];
+                if (CBoxMoteList.Text.Length != 16)
+                    throw new Exception("Invalid Mac Address");
+                mac_addr = StringToByteArray(CBoxMoteList.Text);
+
+                serialPort.Write("D");// Get Mote Infomation
+                serialPort.Write(mac_addr, 0, mac_addr.Length);
+            }
+            catch
+            {
+                MessageBox.Show("Error! Invalid Values!");
+            }
+            
         }
     }
 }
