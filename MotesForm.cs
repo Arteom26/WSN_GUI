@@ -15,6 +15,22 @@ namespace SMIP_Network
         public MotesForm()
         {
             InitializeComponent();
+            chart1.Series.Remove(chart1.Series[0]);
+            chart1.Titles.Add("Data vs. Time");
+            chart1.ChartAreas[0].AxisX.Title = "Number of Points";
+            chart1.ChartAreas[0].AxisY.Title = "Value";
+            if (chart1.Series.IndexOf("asd") != -1)
+            {
+                // Series Exists
+            }
+            else
+            {
+                // Series Does Not Exist
+            }
+            //chart1.Series.Add("00000000");
+            //chart1.Series["00000000"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            //chart1.Series["00000000"].Points.AddXY(0, 0);
+            //chart1.Series["00000000"].Points.AddXY(1, 3);
         }
     }
 }

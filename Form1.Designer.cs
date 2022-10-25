@@ -32,25 +32,25 @@ namespace SMIP_Network
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panelmainPage = new System.Windows.Forms.Panel();
-            this.panelLogo = new System.Windows.Forms.Panel();
-            this.panelTop = new System.Windows.Forms.Panel();
-            this.panelshadow = new System.Windows.Forms.Panel();
-            this.panelMain = new System.Windows.Forms.Panel();
-            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
-            this.MaximBtn = new FontAwesome.Sharp.IconButton();
-            this.MinBtn = new FontAwesome.Sharp.IconButton();
-            this.CloseBtn = new FontAwesome.Sharp.IconButton();
             this.Help_btn = new FontAwesome.Sharp.IconButton();
             this.Setting_buttun = new FontAwesome.Sharp.IconButton();
             this.Configar_Btn = new FontAwesome.Sharp.IconButton();
             this.Statistics_Btn = new FontAwesome.Sharp.IconButton();
             this.Mote_BTN = new FontAwesome.Sharp.IconButton();
             this.Home = new FontAwesome.Sharp.IconButton();
+            this.panelLogo = new System.Windows.Forms.Panel();
             this.HuskLogo = new System.Windows.Forms.PictureBox();
+            this.panelTop = new System.Windows.Forms.Panel();
+            this.MaximBtn = new FontAwesome.Sharp.IconButton();
+            this.MinBtn = new FontAwesome.Sharp.IconButton();
+            this.CloseBtn = new FontAwesome.Sharp.IconButton();
+            this.panelshadow = new System.Windows.Forms.Panel();
+            this.panelMain = new System.Windows.Forms.Panel();
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.panelmainPage.SuspendLayout();
             this.panelLogo.SuspendLayout();
-            this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.HuskLogo)).BeginInit();
+            this.panelTop.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelmainPage
@@ -69,111 +69,6 @@ namespace SMIP_Network
             this.panelmainPage.Name = "panelmainPage";
             this.panelmainPage.Size = new System.Drawing.Size(488, 1887);
             this.panelmainPage.TabIndex = 0;
-            // 
-            // panelLogo
-            // 
-            this.panelLogo.Controls.Add(this.HuskLogo);
-            this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelLogo.Location = new System.Drawing.Point(0, 0);
-            this.panelLogo.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
-            this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(488, 285);
-            this.panelLogo.TabIndex = 0;
-            // 
-            // panelTop
-            // 
-            this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(4)))), ((int)(((byte)(48)))));
-            this.panelTop.Controls.Add(this.MaximBtn);
-            this.panelTop.Controls.Add(this.MinBtn);
-            this.panelTop.Controls.Add(this.CloseBtn);
-            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTop.Location = new System.Drawing.Point(488, 0);
-            this.panelTop.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
-            this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(3356, 176);
-            this.panelTop.TabIndex = 1;
-            this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTop_MouseDown);
-            // 
-            // panelshadow
-            // 
-            this.panelshadow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(0)))), ((int)(((byte)(28)))));
-            this.panelshadow.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelshadow.Location = new System.Drawing.Point(488, 176);
-            this.panelshadow.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
-            this.panelshadow.Name = "panelshadow";
-            this.panelshadow.Size = new System.Drawing.Size(3356, 41);
-            this.panelshadow.TabIndex = 2;
-            // 
-            // panelMain
-            // 
-            this.panelMain.BackColor = System.Drawing.Color.White;
-            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMain.Location = new System.Drawing.Point(488, 217);
-            this.panelMain.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
-            this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(3356, 1670);
-            this.panelMain.TabIndex = 3;
-            this.panelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMain_Paint);
-            // 
-            // MaximBtn
-            // 
-            this.MaximBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.MaximBtn.BackColor = System.Drawing.Color.Transparent;
-            this.MaximBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.MaximBtn.FlatAppearance.BorderSize = 0;
-            this.MaximBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MaximBtn.ForeColor = System.Drawing.Color.Transparent;
-            this.MaximBtn.IconChar = FontAwesome.Sharp.IconChar.WindowMaximize;
-            this.MaximBtn.IconColor = System.Drawing.Color.White;
-            this.MaximBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.MaximBtn.IconSize = 35;
-            this.MaximBtn.Location = new System.Drawing.Point(3002, 26);
-            this.MaximBtn.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
-            this.MaximBtn.Name = "MaximBtn";
-            this.MaximBtn.Size = new System.Drawing.Size(148, 126);
-            this.MaximBtn.TabIndex = 2;
-            this.MaximBtn.UseVisualStyleBackColor = false;
-            this.MaximBtn.Click += new System.EventHandler(this.MaximBtn_Click);
-            // 
-            // MinBtn
-            // 
-            this.MinBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.MinBtn.BackColor = System.Drawing.Color.Transparent;
-            this.MinBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.MinBtn.FlatAppearance.BorderSize = 0;
-            this.MinBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MinBtn.ForeColor = System.Drawing.Color.Transparent;
-            this.MinBtn.IconChar = FontAwesome.Sharp.IconChar.WindowMinimize;
-            this.MinBtn.IconColor = System.Drawing.Color.White;
-            this.MinBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.MinBtn.IconSize = 35;
-            this.MinBtn.Location = new System.Drawing.Point(2833, 26);
-            this.MinBtn.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
-            this.MinBtn.Name = "MinBtn";
-            this.MinBtn.Size = new System.Drawing.Size(148, 126);
-            this.MinBtn.TabIndex = 1;
-            this.MinBtn.UseVisualStyleBackColor = false;
-            this.MinBtn.Click += new System.EventHandler(this.MinBtn_Click);
-            // 
-            // CloseBtn
-            // 
-            this.CloseBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.CloseBtn.BackColor = System.Drawing.Color.Transparent;
-            this.CloseBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.CloseBtn.FlatAppearance.BorderSize = 0;
-            this.CloseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CloseBtn.ForeColor = System.Drawing.Color.Transparent;
-            this.CloseBtn.IconChar = FontAwesome.Sharp.IconChar.WindowClose;
-            this.CloseBtn.IconColor = System.Drawing.Color.White;
-            this.CloseBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.CloseBtn.IconSize = 35;
-            this.CloseBtn.Location = new System.Drawing.Point(3169, 26);
-            this.CloseBtn.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
-            this.CloseBtn.Name = "CloseBtn";
-            this.CloseBtn.Size = new System.Drawing.Size(148, 126);
-            this.CloseBtn.TabIndex = 0;
-            this.CloseBtn.UseVisualStyleBackColor = false;
-            this.CloseBtn.Click += new System.EventHandler(this.CloseBtn_Click);
             // 
             // Help_btn
             // 
@@ -319,6 +214,16 @@ namespace SMIP_Network
             this.Home.UseVisualStyleBackColor = true;
             this.Home.Click += new System.EventHandler(this.Home_Click);
             // 
+            // panelLogo
+            // 
+            this.panelLogo.Controls.Add(this.HuskLogo);
+            this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelLogo.Location = new System.Drawing.Point(0, 0);
+            this.panelLogo.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
+            this.panelLogo.Name = "panelLogo";
+            this.panelLogo.Size = new System.Drawing.Size(488, 285);
+            this.panelLogo.TabIndex = 0;
+            // 
             // HuskLogo
             // 
             this.HuskLogo.Image = global::SMIP_Network.Properties.Resources._1200px_St__Cloud_State_Huskies_logo_svg;
@@ -329,6 +234,107 @@ namespace SMIP_Network
             this.HuskLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.HuskLogo.TabIndex = 0;
             this.HuskLogo.TabStop = false;
+            // 
+            // panelTop
+            // 
+            this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(4)))), ((int)(((byte)(48)))));
+            this.panelTop.Controls.Add(this.MaximBtn);
+            this.panelTop.Controls.Add(this.MinBtn);
+            this.panelTop.Controls.Add(this.CloseBtn);
+            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTop.Location = new System.Drawing.Point(488, 0);
+            this.panelTop.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
+            this.panelTop.Name = "panelTop";
+            this.panelTop.Size = new System.Drawing.Size(3356, 176);
+            this.panelTop.TabIndex = 1;
+            this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTop_MouseDown);
+            // 
+            // MaximBtn
+            // 
+            this.MaximBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.MaximBtn.BackColor = System.Drawing.Color.Transparent;
+            this.MaximBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.MaximBtn.FlatAppearance.BorderSize = 0;
+            this.MaximBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MaximBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MaximBtn.ForeColor = System.Drawing.Color.Transparent;
+            this.MaximBtn.IconChar = FontAwesome.Sharp.IconChar.WindowMaximize;
+            this.MaximBtn.IconColor = System.Drawing.Color.White;
+            this.MaximBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.MaximBtn.IconSize = 35;
+            this.MaximBtn.Location = new System.Drawing.Point(3002, 26);
+            this.MaximBtn.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
+            this.MaximBtn.Name = "MaximBtn";
+            this.MaximBtn.Size = new System.Drawing.Size(148, 126);
+            this.MaximBtn.TabIndex = 2;
+            this.MaximBtn.Text = "□";
+            this.MaximBtn.UseVisualStyleBackColor = false;
+            this.MaximBtn.Click += new System.EventHandler(this.MaximBtn_Click);
+            // 
+            // MinBtn
+            // 
+            this.MinBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.MinBtn.BackColor = System.Drawing.Color.Transparent;
+            this.MinBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.MinBtn.FlatAppearance.BorderSize = 0;
+            this.MinBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MinBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MinBtn.ForeColor = System.Drawing.Color.Transparent;
+            this.MinBtn.IconChar = FontAwesome.Sharp.IconChar.WindowMinimize;
+            this.MinBtn.IconColor = System.Drawing.Color.White;
+            this.MinBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.MinBtn.IconSize = 35;
+            this.MinBtn.Location = new System.Drawing.Point(2833, 26);
+            this.MinBtn.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
+            this.MinBtn.Name = "MinBtn";
+            this.MinBtn.Size = new System.Drawing.Size(148, 126);
+            this.MinBtn.TabIndex = 1;
+            this.MinBtn.Text = "-";
+            this.MinBtn.UseVisualStyleBackColor = false;
+            this.MinBtn.Click += new System.EventHandler(this.MinBtn_Click);
+            // 
+            // CloseBtn
+            // 
+            this.CloseBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CloseBtn.BackColor = System.Drawing.Color.Transparent;
+            this.CloseBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.CloseBtn.FlatAppearance.BorderSize = 0;
+            this.CloseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CloseBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CloseBtn.ForeColor = System.Drawing.Color.Transparent;
+            this.CloseBtn.IconChar = FontAwesome.Sharp.IconChar.WindowClose;
+            this.CloseBtn.IconColor = System.Drawing.Color.White;
+            this.CloseBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.CloseBtn.IconSize = 35;
+            this.CloseBtn.Location = new System.Drawing.Point(3169, 26);
+            this.CloseBtn.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
+            this.CloseBtn.Name = "CloseBtn";
+            this.CloseBtn.Size = new System.Drawing.Size(148, 126);
+            this.CloseBtn.TabIndex = 0;
+            this.CloseBtn.Text = "X";
+            this.CloseBtn.UseVisualStyleBackColor = false;
+            this.CloseBtn.Click += new System.EventHandler(this.CloseBtn_Click);
+            // 
+            // panelshadow
+            // 
+            this.panelshadow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(0)))), ((int)(((byte)(28)))));
+            this.panelshadow.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelshadow.Location = new System.Drawing.Point(488, 176);
+            this.panelshadow.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
+            this.panelshadow.Name = "panelshadow";
+            this.panelshadow.Size = new System.Drawing.Size(3356, 41);
+            this.panelshadow.TabIndex = 2;
+            // 
+            // panelMain
+            // 
+            this.panelMain.BackColor = System.Drawing.Color.White;
+            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMain.Location = new System.Drawing.Point(488, 217);
+            this.panelMain.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Size = new System.Drawing.Size(3356, 1670);
+            this.panelMain.TabIndex = 3;
+            this.panelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMain_Paint);
             // 
             // Form1
             // 
@@ -345,8 +351,8 @@ namespace SMIP_Network
             this.Text = "SMARTMESH IP SENSOR NETWORK";
             this.panelmainPage.ResumeLayout(false);
             this.panelLogo.ResumeLayout(false);
-            this.panelTop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.HuskLogo)).EndInit();
+            this.panelTop.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

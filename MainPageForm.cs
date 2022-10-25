@@ -53,7 +53,6 @@ namespace SMIP_Network
         {
             InitializeComponent();
             objForm1 = obj;
-
             string[] ports = SerialPort.GetPortNames();
             comPortComboBox.Items.AddRange(ports);
             //chart1.Titles.Add("Mass-density (µg/m³) Air");
@@ -233,7 +232,7 @@ namespace SMIP_Network
 
 
         /* NOTE:    Fathi   Sunday 11/14/2021
-         *The code below does not save CVS files. all of the code related to saving the data to excell file wore commented out. 
+         *The code below does not save CVS files. all of the code related to saving the data to excel file wore commented out. 
          *                              
          */
 
@@ -241,12 +240,63 @@ namespace SMIP_Network
 
         public void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         { 
+            // State machine to read data
             if (serialPort1.BytesToRead > 0)
             {
-                byte[] buffer = new byte[serialPort1.BytesToRead];
-                int count = serialPort1.Read(buffer, 0, serialPort1.BytesToRead);
-                Universal.Storage += Universal.ByteArrayToString(buffer);
-                CheckForFullPacket();
+                char[] buffer = new char[1];
+                int count = serialPort1.Read(buffer, 0, 1);
+
+                switch (buffer[0])
+                {
+                    case 'A':// Network ID was set
+                        break;
+
+                    case 'B':// Join Key was set
+                        break;
+
+                    case 'C':// Mote list was recieved
+                        byte[] curr_mac_addr = new byte[8];
+                        serialPort.Read(buffer, 0, 1);
+                        while (buffer[0] == 'D')// Will send 'E' once complete
+                        {
+                            serialPort.Read(curr_mac_addr, 0, 8);// Read the mac_addr
+                            string temp = Universal.ByteArrayToString(curr_mac_addr);
+                            CBoxMoteList.Items.Add(temp);// Add the mac address
+                        }
+                        break;
+
+                    case 'F':// Mote Information was recived
+                        break;
+
+                    case 'G':// URL was set
+                        break;
+
+                    case 'H':// Private Key was set
+                        break;
+
+                    case 'I':// Mote data was recieved
+                        byte[] mac_addr = new byte[8];
+                        byte[] data = new byte[8];// Data is currently 8 bytes long
+                        serialPort.Read(mac_addr, 0, 8);// Get the mac address
+                        serialPort.Read(data, 0, 16);// Get the data stored
+                        string hex = BitConverter.ToString(mac_addr).Replace("-", "");// Get hex string
+                        string dat = BitConverter.ToString(data).Replace("-", "");
+                        if (objForm1.bluetoothData.chart1.Series.IndexOf(hex) != -1)
+                        {// Series Exists => add to graph
+                            objForm1.bluetoothData.chart1.Series[hex].Points.AddY(long.Parse(dat));
+                        }
+                        else// Series Does Not Exist => create a new one
+                        {
+                            objForm1.bluetoothData.chart1.Series.Add(hex);
+                            objForm1.bluetoothData.chart1.Series[hex].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+                            objForm1.bluetoothData.chart1.Series["hex"].Points.AddY(long.Parse(dat));
+                        }
+                        break;
+                       
+                    default:
+                        MessageBox.Show("Invalid Command Recieved!!");
+                        break;
+                }
             }
         }
 

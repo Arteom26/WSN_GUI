@@ -26,8 +26,8 @@ namespace SMIP_Network
         private Form currentChildForm;
         private object iconCurrentChildForm;
         #endregion
-
-
+        MainPageForm mainPageForm;
+        public MotesForm bluetoothData;
 
 
 
@@ -42,10 +42,11 @@ namespace SMIP_Network
             this.ControlBox = false;
             this.DoubleBuffered = true;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
-
+            mainPageForm = new MainPageForm(this);
+            bluetoothData = new MotesForm();
 
             MainPageForm objForm3 = new MainPageForm(this);
-            OpenChildForm(objForm3);
+            OpenChildForm(mainPageForm);
             // OpenChildForm(new MainPageForm());
 
         }
@@ -138,7 +139,7 @@ namespace SMIP_Network
             if (currentChildForm != null)
             {
 
-                currentChildForm.Close();
+                //currentChildForm.Close();
             
             }
 
@@ -165,7 +166,7 @@ namespace SMIP_Network
            // OpenChildForm(new MainPageForm());
 
             MainPageForm objForm3 = new MainPageForm(this);
-            OpenChildForm(objForm3);
+            OpenChildForm(mainPageForm);
             // objForm3.Activate();
            // objForm3.Show();
             // this.Hide();
@@ -174,7 +175,8 @@ namespace SMIP_Network
         private void Mote_BTN_Click(object sender, EventArgs e)
         {
             ActiveButton(sender, RGBColors.color2);
-            OpenChildForm(new MotesForm());
+            OpenChildForm(bluetoothData);
+            //OpenChildForm(new MotesForm());
 
          //   MainPageForm settings = new MainPageForm(serialPort1);
         }
