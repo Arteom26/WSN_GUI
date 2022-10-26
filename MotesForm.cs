@@ -19,6 +19,7 @@ namespace SMIP_Network
             chart1.Titles.Add("Data vs. Time");
             chart1.ChartAreas[0].AxisX.Title = "Number of Points";
             chart1.ChartAreas[0].AxisY.Title = "Value";
+            chart1.ChartAreas[0].AxisY.IsStartedFromZero = false;
             if (chart1.Series.IndexOf("asd") != -1)
             {
                 // Series Exists

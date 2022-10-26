@@ -67,10 +67,11 @@ namespace SMIP_Network
             this.button2 = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.moteInfoButton = new System.Windows.Forms.Button();
+            this.avgLatencyLabel = new System.Windows.Forms.Label();
+            this.packetsLostLabel = new System.Windows.Forms.Label();
+            this.packetsRecievedLabel = new System.Windows.Forms.Label();
+            this.moteMacAddrLabel = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -87,6 +88,7 @@ namespace SMIP_Network
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.motesConnLabel = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.netidLabel = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
@@ -94,8 +96,6 @@ namespace SMIP_Network
             this.IPV6Label = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
-            this.motesConnLabel = new System.Windows.Forms.Label();
-            this.moteInfoButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -297,7 +297,7 @@ namespace SMIP_Network
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clearToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(113, 59);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(113, 64);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // toolStripProgressBar1
@@ -335,14 +335,14 @@ namespace SMIP_Network
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(21, 4, 0, 4);
-            this.menuStrip1.Size = new System.Drawing.Size(3350, 67);
+            this.menuStrip1.Size = new System.Drawing.Size(3350, 72);
             this.menuStrip1.TabIndex = 60;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(163, 59);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(163, 64);
             this.aboutToolStripMenuItem.Text = "About";
             // 
             // button1
@@ -512,10 +512,10 @@ namespace SMIP_Network
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.moteInfoButton);
-            this.groupBox4.Controls.Add(this.label15);
-            this.groupBox4.Controls.Add(this.label14);
-            this.groupBox4.Controls.Add(this.label13);
-            this.groupBox4.Controls.Add(this.label12);
+            this.groupBox4.Controls.Add(this.avgLatencyLabel);
+            this.groupBox4.Controls.Add(this.packetsLostLabel);
+            this.groupBox4.Controls.Add(this.packetsRecievedLabel);
+            this.groupBox4.Controls.Add(this.moteMacAddrLabel);
             this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Location = new System.Drawing.Point(760, 753);
             this.groupBox4.Name = "groupBox4";
@@ -523,45 +523,60 @@ namespace SMIP_Network
             this.groupBox4.TabIndex = 62;
             this.groupBox4.TabStop = false;
             // 
-            // label15
+            // moteInfoButton
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Marlett", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(33, 434);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(302, 65);
-            this.label15.TabIndex = 78;
-            this.label15.Text = "Join Time: ";
+            this.moteInfoButton.BackColor = System.Drawing.Color.SteelBlue;
+            this.moteInfoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.moteInfoButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.moteInfoButton.ForeColor = System.Drawing.Color.Transparent;
+            this.moteInfoButton.Location = new System.Drawing.Point(279, 547);
+            this.moteInfoButton.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.moteInfoButton.Name = "moteInfoButton";
+            this.moteInfoButton.Size = new System.Drawing.Size(614, 125);
+            this.moteInfoButton.TabIndex = 75;
+            this.moteInfoButton.Text = "Get Mote Info";
+            this.moteInfoButton.UseVisualStyleBackColor = false;
+            this.moteInfoButton.Click += new System.EventHandler(this.moteInfoButton_Click);
             // 
-            // label14
+            // avgLatencyLabel
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Marlett", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(33, 339);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(305, 65);
-            this.label14.TabIndex = 77;
-            this.label14.Text = "TX Power: ";
+            this.avgLatencyLabel.AutoSize = true;
+            this.avgLatencyLabel.Font = new System.Drawing.Font("Marlett", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.avgLatencyLabel.Location = new System.Drawing.Point(33, 434);
+            this.avgLatencyLabel.Name = "avgLatencyLabel";
+            this.avgLatencyLabel.Size = new System.Drawing.Size(367, 65);
+            this.avgLatencyLabel.TabIndex = 78;
+            this.avgLatencyLabel.Text = "Avg Latency: ";
             // 
-            // label13
+            // packetsLostLabel
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Marlett", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(33, 238);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(256, 65);
-            this.label13.TabIndex = 76;
-            this.label13.Text = "Mote ID: ";
+            this.packetsLostLabel.AutoSize = true;
+            this.packetsLostLabel.Font = new System.Drawing.Font("Marlett", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.packetsLostLabel.Location = new System.Drawing.Point(33, 339);
+            this.packetsLostLabel.Name = "packetsLostLabel";
+            this.packetsLostLabel.Size = new System.Drawing.Size(381, 65);
+            this.packetsLostLabel.TabIndex = 77;
+            this.packetsLostLabel.Text = "Packets Lost: ";
             // 
-            // label12
+            // packetsRecievedLabel
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Marlett", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(33, 138);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(402, 65);
-            this.label12.TabIndex = 75;
-            this.label12.Text = "MAC Address: ";
+            this.packetsRecievedLabel.AutoSize = true;
+            this.packetsRecievedLabel.Font = new System.Drawing.Font("Marlett", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.packetsRecievedLabel.Location = new System.Drawing.Point(33, 238);
+            this.packetsRecievedLabel.Name = "packetsRecievedLabel";
+            this.packetsRecievedLabel.Size = new System.Drawing.Size(509, 65);
+            this.packetsRecievedLabel.TabIndex = 76;
+            this.packetsRecievedLabel.Text = "Packets Recieved: ";
+            // 
+            // moteMacAddrLabel
+            // 
+            this.moteMacAddrLabel.AutoSize = true;
+            this.moteMacAddrLabel.Font = new System.Drawing.Font("Marlett", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.moteMacAddrLabel.Location = new System.Drawing.Point(33, 138);
+            this.moteMacAddrLabel.Name = "moteMacAddrLabel";
+            this.moteMacAddrLabel.Size = new System.Drawing.Size(402, 65);
+            this.moteMacAddrLabel.TabIndex = 75;
+            this.moteMacAddrLabel.Text = "MAC Address: ";
             // 
             // label11
             // 
@@ -746,6 +761,16 @@ namespace SMIP_Network
             this.groupBox7.TabStop = false;
             this.groupBox7.Enter += new System.EventHandler(this.groupBox7_Enter);
             // 
+            // motesConnLabel
+            // 
+            this.motesConnLabel.AutoSize = true;
+            this.motesConnLabel.Font = new System.Drawing.Font("Marlett", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.motesConnLabel.Location = new System.Drawing.Point(1905, 317);
+            this.motesConnLabel.Name = "motesConnLabel";
+            this.motesConnLabel.Size = new System.Drawing.Size(483, 65);
+            this.motesConnLabel.TabIndex = 82;
+            this.motesConnLabel.Text = "Motes Connected:";
+            // 
             // button7
             // 
             this.button7.BackColor = System.Drawing.Color.MediumAquamarine;
@@ -831,31 +856,6 @@ namespace SMIP_Network
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // motesConnLabel
-            // 
-            this.motesConnLabel.AutoSize = true;
-            this.motesConnLabel.Font = new System.Drawing.Font("Marlett", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.motesConnLabel.Location = new System.Drawing.Point(1905, 317);
-            this.motesConnLabel.Name = "motesConnLabel";
-            this.motesConnLabel.Size = new System.Drawing.Size(483, 65);
-            this.motesConnLabel.TabIndex = 82;
-            this.motesConnLabel.Text = "Motes Connected:";
-            // 
-            // moteInfoButton
-            // 
-            this.moteInfoButton.BackColor = System.Drawing.Color.SteelBlue;
-            this.moteInfoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moteInfoButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.moteInfoButton.ForeColor = System.Drawing.Color.Transparent;
-            this.moteInfoButton.Location = new System.Drawing.Point(279, 547);
-            this.moteInfoButton.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
-            this.moteInfoButton.Name = "moteInfoButton";
-            this.moteInfoButton.Size = new System.Drawing.Size(614, 125);
-            this.moteInfoButton.TabIndex = 75;
-            this.moteInfoButton.Text = "Get Mote Info";
-            this.moteInfoButton.UseVisualStyleBackColor = false;
-            this.moteInfoButton.Click += new System.EventHandler(this.moteInfoButton_Click);
-            // 
             // MainPageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 37F);
@@ -938,10 +938,10 @@ namespace SMIP_Network
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox CBoxMoteList;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label avgLatencyLabel;
+        private System.Windows.Forms.Label packetsLostLabel;
+        private System.Windows.Forms.Label packetsRecievedLabel;
+        private System.Windows.Forms.Label moteMacAddrLabel;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;

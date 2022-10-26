@@ -211,6 +211,35 @@ namespace SMIP_Network
                         break;
 
                     case 'F':// Mote Information was recived
+                        byte[] information = new byte[8];
+                        while (serialPort1.BytesToRead < 8) ;
+                        serialPort1.Read(information, 0, 8);// Get the mac address
+                        string MacAddr = BitConverter.ToString(information).Replace("-", "");
+                        MacAddr = Regex.Replace(MacAddr, ".{2}", "$0:");// Format the string;
+                        MacAddr = MacAddr.Remove(MacAddr.Length - 1);
+                        this.Invoke(new MethodInvoker(delegate
+                        {
+                            moteMacAddrLabel.Text = "Mac Address: " + MacAddr;
+                        }));
+                        byte[] info = new byte[4];
+                        while (serialPort1.BytesToRead < 4) ;
+                        serialPort1.Read(info, 0, 4);// Get packets
+                        this.Invoke(new MethodInvoker(delegate
+                        {
+                            (info[0], info[1], info[2], info[3]) = (info[3], info[2], info[1], info[0]);
+                            packetsRecievedLabel.Text = "Packets Recieved: " + BitConverter.ToUInt32(info, 0).ToString();
+                        }));
+                        
+
+                        while (serialPort1.BytesToRead < 4) ;
+                        serialPort1.Read(info, 0, 4);// Get lost packets
+                        (info[0], info[1], info[2], info[3]) = (info[3], info[2], info[1], info[0]);
+                        packetsLostLabel.Text = "Packets Lost: " + BitConverter.ToUInt32(info, 0).ToString();
+
+                        while (serialPort1.BytesToRead < 4) ;
+                        serialPort1.Read(info, 0, 4);// Get latency
+                        (info[0], info[1], info[2], info[3]) = (info[3], info[2], info[1], info[0]);
+                        avgLatencyLabel.Text = "Avg Latency: " + BitConverter.ToUInt32(info, 0).ToString();
                         break;
 
                     case 'G':// URL was set
@@ -696,7 +725,7 @@ namespace SMIP_Network
         private void moteInfoButton_Click(object sender, EventArgs e)
         {
             serialPort1.Write("I");// Get mote information
-            UInt64 mac = UInt64.Parse(CBoxMoteList.Text);
+            UInt64 mac = UInt64.Parse(CBoxMoteList.Text, System.Globalization.NumberStyles.HexNumber);
             byte[] macAddr = BitConverter.GetBytes(mac);
             (macAddr[0], macAddr[1], macAddr[2], macAddr[3], macAddr[4], macAddr[5], macAddr[6], macAddr[7]) = 
                 (macAddr[7], macAddr[6], macAddr[5], macAddr[4], macAddr[3], macAddr[2], macAddr[1], macAddr[0]);
