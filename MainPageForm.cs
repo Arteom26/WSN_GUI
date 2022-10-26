@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FireSharp.Config;
@@ -131,7 +132,7 @@ namespace SMIP_Network
                 toolStripStatusLabel1.ForeColor = Color.Green;
                 toolStripProgressBar1.Value = 100;
 
-                this.Invoke(new EventHandler(LiveUPDATE));
+                //this.Invoke(new EventHandler(LiveUPDATE));
             }
             catch (Exception e)
             {
@@ -167,70 +168,7 @@ namespace SMIP_Network
                 MessageBox.Show("there was problem in the internet.");
 
             }
-            /*
-            chart1.Series[0].Points.AddY(0);
-            chart1.Series[1].Points.AddY(0);
-            chart1.Series[2].Points.AddY(0);
-
-
-            chart2.Series[0].Points.AddY(0);
-            chart2.Series[1].Points.AddY(0);
-            chart2.Series[2].Points.AddY(0);
-            chart2.Series[3].Points.AddY(0); 
-            chart2.Series[4].Points.AddY(0);
-            chart2.Series[5].Points.AddY(0);
-
-
-
-            chart3.Series[0].Points.AddY(0);
-            chart3.Series[1].Points.AddY(0);
-            chart3.Series[2].Points.AddY(0);
-
-
-            chart4.Series[0].Points.AddY(0);
-            chart4.Series[1].Points.AddY(0);
-            */
-
-
         }
-
-
-        #region TransmissionTextBox
-
-        private void transmitterTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (Universal.EnterWasPressed == 1)
-            {
-                //transmitterTextBox.Text = transmitterTextBox.Text.Replace(Environment.NewLine, "");
-                Universal.EnterWasPressed = 0;
-            }
-
-        }
-
-        private void transmitterTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (serialPort1.IsOpen)
-                {
-                    //Universal.dataOUT = transmitterTextBox.Text;
-
-                
-
-                    if (Universal.portType == "CLI")
-                        serialPort1.WriteLine(Universal.dataOUT);
-                    else
-                        EnterKey();
-
-                   // transmitterTextBox.Text = "";
-                    Universal.EnterWasPressed = 1;
-                }
-            }
-        }
-
-        #endregion
-
-
         /* NOTE:    Fathi   Sunday 11/14/2021
          *The code below does not save CVS files. all of the code related to saving the data to excel file wore commented out. 
          *                              
@@ -258,12 +196,17 @@ namespace SMIP_Network
 
                     case 'C':// Mote list was recieved
                         byte[] curr_mac_addr = new byte[8];
-                        serialPort.Read(buffer, 0, 1);
+                        serialPort1.Read(buffer, 0, 1);
                         while (buffer[0] == 'D')// Will send 'E' once complete
                         {
-                            serialPort.Read(curr_mac_addr, 0, 8);// Read the mac_addr
+                            serialPort1.Read(curr_mac_addr, 0, 8);// Read the mac_addr
                             string temp = Universal.ByteArrayToString(curr_mac_addr);
-                            CBoxMoteList.Items.Add(temp);// Add the mac address
+                            this.Invoke(new MethodInvoker(delegate
+                            {
+                                CBoxMoteList.Items.Clear();// Remove previous values
+                                CBoxMoteList.Items.Add(temp);// Add the mac address
+                            }));
+                            serialPort1.Read(buffer, 0, 1);
                         }
                         break;
 
@@ -279,24 +222,75 @@ namespace SMIP_Network
                     case 'I':// Mote data was recieved
                         byte[] mac_addr = new byte[8];
                         byte[] data = new byte[8];// Data is currently 8 bytes long
-                        serialPort.Read(mac_addr, 0, 8);// Get the mac address
-                        serialPort.Read(data, 0, 16);// Get the data stored
+                        while (serialPort1.BytesToRead < 8) ;// Wait for data to come in
+                        serialPort1.Read(mac_addr, 0, 8);// Get the mac address
                         string hex = BitConverter.ToString(mac_addr).Replace("-", "");// Get hex string
+                        while (serialPort1.BytesToRead < 8) ;
+                        serialPort1.Read(data, 0, 8);// Get the data stored
                         string dat = BitConverter.ToString(data).Replace("-", "");
                         if (objForm1.bluetoothData.chart1.Series.IndexOf(hex) != -1)
                         {// Series Exists => add to graph
-                            objForm1.bluetoothData.chart1.Series[hex].Points.AddY(long.Parse(dat));
+                            this.Invoke(new MethodInvoker(delegate
+                            {
+                                objForm1.bluetoothData.chart1.Series[hex].Points.AddY(long.Parse(dat, System.Globalization.NumberStyles.HexNumber));
+                            }));
+                            
                         }
                         else// Series Does Not Exist => create a new one
                         {
-                            objForm1.bluetoothData.chart1.Series.Add(hex);
-                            objForm1.bluetoothData.chart1.Series[hex].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-                            objForm1.bluetoothData.chart1.Series["hex"].Points.AddY(long.Parse(dat));
+                            this.Invoke(new MethodInvoker(delegate
+                            {
+                                objForm1.bluetoothData.chart1.Series.Add(hex);
+                                objForm1.bluetoothData.chart1.Series[hex].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+                                objForm1.bluetoothData.chart1.Series[hex].Points.AddY(long.Parse(dat, System.Globalization.NumberStyles.HexNumber));
+                            }));
                         }
                         break;
 
                     case 'J':// Get network manager config
-                        MessageBox.Show("Recived Config!");
+                        try
+                        {
+                            byte[] Data = new byte[16];
+                            serialPort1.Read(Data, 0, 2);
+                            (Data[0], Data[1]) = (Data[1], Data[0]);
+                            UInt16 netID = BitConverter.ToUInt16(Data, 0);
+                            netidLabel.Text = "Network ID: " + netID.ToString();
+                            serialPort1.Read(Data, 0, 1);// Get the TX power
+                            txPowerLabel.Text = "TX Power: " + Data[0].ToString();
+                            serialPort1.Read(Data, 0, 2);// Get number of motes connected
+                            (Data[0], Data[1]) = (Data[1], Data[0]);
+                            motesConnLabel.Text = "Motes Connected: " + BitConverter.ToUInt16(Data, 0);
+                            serialPort1.Read(Data, 0, 16);// Get the IPV6 address
+                            string IPV6 = BitConverter.ToString(Data).Replace("-", "");
+                            IPV6 = Regex.Replace(IPV6, ".{4}", "$0:");// Format the string;
+                            IPV6 = IPV6.Remove(IPV6.Length-1);
+                            IPV6Label.Text = "IPV6: " + IPV6;
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Error!");
+                        }
+                        break;
+
+                    case 'K':// Is network manager connected
+                        byte[] buf = new byte[1];
+                        serialPort1.Read(buf, 0, 1);
+                        if (buf[0] == '0')
+                            MessageBox.Show("Not Connected");
+                        else
+                            MessageBox.Show("Connected");
+                        break;
+
+                    case 'L':// Network manager was reset
+                        MessageBox.Show("System Reset!");
+                        break;
+
+                    case 'M':// Reset stats command
+                        MessageBox.Show("Reset Statistics!");
+                        break;
+
+                    case 'X':
+                        MessageBox.Show("Error! Invalid Command!");
                         break;
                        
                     default:
@@ -305,66 +299,6 @@ namespace SMIP_Network
                 }
             }
         }
-
-
-        private void CheckForFullPacket()
-        {
-            int count = Universal.Storage.Length / 2;
-
-            for (int i = 0; i < count; i++)
-            {
-                if (Universal.flagInt == 2)
-                    break;
-
-                if (Universal.Storage.Substring(0, 2) == "7E")
-                    Universal.flagInt++;
-
-                Universal.dataIN += Universal.Storage.Substring(0, 2);
-                Universal.Storage = Universal.Storage.Remove(0, 2);
-            }
-            if (Universal.flagInt == 2)
-            {
-               // addToRecord(CurrentTime, Universal.displayMessage, FilePath);
-
-                try
-                {
-                    this.Invoke(new EventHandler(DisplayData));
-                }
-                catch
-                {
-                    Universal.dataIN = "";
-                }
-
-                Universal.Storage = "";
-                Universal.flagInt = 0;
-            }
-        }
-
-        string Sensor_Payload;
-        // deciphering packets from the network manager
-        private void DisplayData(object sender, EventArgs e)
-        {
-            Universal.DecodePacket();
-
-            Sensor_Payload += Universal.displayMessage;
-            this.Invoke(new EventHandler(MangToPhone));
-
-            if (Universal.PacketType == "03")
-            {
-                Universal.dataOUT = "hello";
-                EnterKey();
-            }
-
-            Universal.flagInt = 0;
-            Universal.dataIN = "";
-
-
-            if (Sensor_Payload.Contains("data: ") && Sensor_Payload.Contains("Payload length: "))
-            {
-                //this.Invoke(new EventHandler(Sensor_data));
-            }
-        }
-
 
         // Preparing outgoing packets 
         public void EnterKey()
@@ -667,18 +601,19 @@ namespace SMIP_Network
                 if (textBox2.Text.Length > 32)
                     throw (new Exception("Invalid Join Key"));
 
-                byte[] jkey = new byte[32];// Setup byte array for serial port sending
+                byte[] jkey = new byte[16];// Setup byte array for serial port sending
                 if(textBox2.Text.Length % 2 == 0)// Fix error for odd length of strings
                     jkey = StringToByteArray(textBox2.Text);
                 else
                     jkey = StringToByteArray(textBox2.Text + "0");
 
-                Array.Resize<byte>(ref jkey, 32);
+                Array.Resize<byte>(ref jkey, 16);
 
                 serialPort1.Write("A");// Send the network ID
                 serialPort1.Write(netid, 0, 2);
                 serialPort1.Write("B");// Send the join key
-                serialPort1.Write(jkey, 0, 32);
+                serialPort1.Write(jkey, 0, 16);
+                //serialPort1.Write("F");// Reset the system
             }
             catch(Exception ex)
             {
@@ -691,7 +626,7 @@ namespace SMIP_Network
         {
             try
             {
-                serialPort.Write("C");// Get the mote list and process in the handler
+                serialPort1.Write("C");// Get the mote list and process in the handler
             }
             catch
             {
@@ -714,8 +649,8 @@ namespace SMIP_Network
                     throw new Exception("Invalid Mac Address");
                 mac_addr = StringToByteArray(CBoxMoteList.Text);
 
-                serialPort.Write("D");// Get Mote Infomation
-                serialPort.Write(mac_addr, 0, mac_addr.Length);
+                serialPort1.Write("D");// Get Mote Infomation
+                serialPort1.Write(mac_addr, 0, mac_addr.Length);
             }
             catch
             {
@@ -727,6 +662,45 @@ namespace SMIP_Network
         private void groupBox7_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                serialPort1.Write("E");// Is the network manager connected
+            }
+            catch
+            {
+                MessageBox.Show("Open Serial Port!");
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                serialPort1.Write("G");// Get network manager stats
+            }
+            catch
+            {
+                MessageBox.Show("Open Serial Port!");
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            serialPort1.Write("H");// Reset manager stats
+        }
+
+        private void moteInfoButton_Click(object sender, EventArgs e)
+        {
+            serialPort1.Write("I");// Get mote information
+            UInt64 mac = UInt64.Parse(CBoxMoteList.Text);
+            byte[] macAddr = BitConverter.GetBytes(mac);
+            (macAddr[0], macAddr[1], macAddr[2], macAddr[3], macAddr[4], macAddr[5], macAddr[6], macAddr[7]) = 
+                (macAddr[7], macAddr[6], macAddr[5], macAddr[4], macAddr[3], macAddr[2], macAddr[1], macAddr[0]);
+            serialPort1.Write(macAddr, 0, 8);
         }
     }
 }
