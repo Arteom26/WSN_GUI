@@ -32,6 +32,7 @@ namespace SMIP_Network
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
@@ -42,23 +43,28 @@ namespace SMIP_Network
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(12, 12);
+            this.chart1.Location = new System.Drawing.Point(4, 4);
+            this.chart1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(3314, 1543);
+            this.chart1.Size = new System.Drawing.Size(1047, 542);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
+            title1.Font = new System.Drawing.Font("Broadway", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title1.Name = "Data Vs. Time";
+            this.chart1.Titles.Add(title1);
             // 
             // MotesForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 37F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(3320, 1567);
+            this.ClientSize = new System.Drawing.Size(1030, 606);
             this.Controls.Add(this.chart1);
+            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.Name = "MotesForm";
             this.Text = "MotesForm";
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();

@@ -55,7 +55,7 @@ namespace SMIP_Network
             // 
             // panelmainPage
             // 
-            this.panelmainPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(4)))), ((int)(((byte)(48)))));
+            this.panelmainPage.BackColor = System.Drawing.Color.Black;
             this.panelmainPage.Controls.Add(this.Help_btn);
             this.panelmainPage.Controls.Add(this.Setting_buttun);
             this.panelmainPage.Controls.Add(this.Configar_Btn);
@@ -65,13 +65,13 @@ namespace SMIP_Network
             this.panelmainPage.Controls.Add(this.panelLogo);
             this.panelmainPage.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelmainPage.Location = new System.Drawing.Point(0, 0);
-            this.panelmainPage.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
             this.panelmainPage.Name = "panelmainPage";
-            this.panelmainPage.Size = new System.Drawing.Size(488, 1887);
+            this.panelmainPage.Size = new System.Drawing.Size(154, 503);
             this.panelmainPage.TabIndex = 0;
             // 
             // Help_btn
             // 
+            this.Help_btn.BackColor = System.Drawing.Color.Black;
             this.Help_btn.Dock = System.Windows.Forms.DockStyle.Top;
             this.Help_btn.FlatAppearance.BorderSize = 0;
             this.Help_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -82,20 +82,20 @@ namespace SMIP_Network
             this.Help_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.Help_btn.IconSize = 30;
             this.Help_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Help_btn.Location = new System.Drawing.Point(0, 1070);
-            this.Help_btn.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
+            this.Help_btn.Location = new System.Drawing.Point(0, 375);
             this.Help_btn.Name = "Help_btn";
-            this.Help_btn.Padding = new System.Windows.Forms.Padding(32, 0, 63, 0);
-            this.Help_btn.Size = new System.Drawing.Size(488, 157);
+            this.Help_btn.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.Help_btn.Size = new System.Drawing.Size(154, 55);
             this.Help_btn.TabIndex = 6;
             this.Help_btn.Text = "Help";
             this.Help_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Help_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.Help_btn.UseVisualStyleBackColor = true;
+            this.Help_btn.UseVisualStyleBackColor = false;
             this.Help_btn.Click += new System.EventHandler(this.Help_btn_Click);
             // 
             // Setting_buttun
             // 
+            this.Setting_buttun.BackColor = System.Drawing.Color.Black;
             this.Setting_buttun.Dock = System.Windows.Forms.DockStyle.Top;
             this.Setting_buttun.FlatAppearance.BorderSize = 0;
             this.Setting_buttun.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -106,20 +106,20 @@ namespace SMIP_Network
             this.Setting_buttun.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.Setting_buttun.IconSize = 30;
             this.Setting_buttun.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Setting_buttun.Location = new System.Drawing.Point(0, 913);
-            this.Setting_buttun.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
+            this.Setting_buttun.Location = new System.Drawing.Point(0, 320);
             this.Setting_buttun.Name = "Setting_buttun";
-            this.Setting_buttun.Padding = new System.Windows.Forms.Padding(32, 0, 63, 0);
-            this.Setting_buttun.Size = new System.Drawing.Size(488, 157);
+            this.Setting_buttun.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.Setting_buttun.Size = new System.Drawing.Size(154, 55);
             this.Setting_buttun.TabIndex = 5;
             this.Setting_buttun.Text = "Settings";
             this.Setting_buttun.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Setting_buttun.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.Setting_buttun.UseVisualStyleBackColor = true;
+            this.Setting_buttun.UseVisualStyleBackColor = false;
             this.Setting_buttun.Click += new System.EventHandler(this.Setting_buttun_Click);
             // 
             // Configar_Btn
             // 
+            this.Configar_Btn.BackColor = System.Drawing.Color.Black;
             this.Configar_Btn.Dock = System.Windows.Forms.DockStyle.Top;
             this.Configar_Btn.FlatAppearance.BorderSize = 0;
             this.Configar_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -130,20 +130,20 @@ namespace SMIP_Network
             this.Configar_Btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.Configar_Btn.IconSize = 30;
             this.Configar_Btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Configar_Btn.Location = new System.Drawing.Point(0, 756);
-            this.Configar_Btn.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
+            this.Configar_Btn.Location = new System.Drawing.Point(0, 265);
             this.Configar_Btn.Name = "Configar_Btn";
-            this.Configar_Btn.Padding = new System.Windows.Forms.Padding(32, 0, 63, 0);
-            this.Configar_Btn.Size = new System.Drawing.Size(488, 157);
+            this.Configar_Btn.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.Configar_Btn.Size = new System.Drawing.Size(154, 55);
             this.Configar_Btn.TabIndex = 4;
             this.Configar_Btn.Text = "Wireless Monitor";
             this.Configar_Btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Configar_Btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.Configar_Btn.UseVisualStyleBackColor = true;
+            this.Configar_Btn.UseVisualStyleBackColor = false;
             this.Configar_Btn.Click += new System.EventHandler(this.Configar_Btn_Click);
             // 
             // Statistics_Btn
             // 
+            this.Statistics_Btn.BackColor = System.Drawing.Color.Black;
             this.Statistics_Btn.Dock = System.Windows.Forms.DockStyle.Top;
             this.Statistics_Btn.FlatAppearance.BorderSize = 0;
             this.Statistics_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -154,20 +154,20 @@ namespace SMIP_Network
             this.Statistics_Btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.Statistics_Btn.IconSize = 30;
             this.Statistics_Btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Statistics_Btn.Location = new System.Drawing.Point(0, 599);
-            this.Statistics_Btn.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
+            this.Statistics_Btn.Location = new System.Drawing.Point(0, 210);
             this.Statistics_Btn.Name = "Statistics_Btn";
-            this.Statistics_Btn.Padding = new System.Windows.Forms.Padding(32, 0, 63, 0);
-            this.Statistics_Btn.Size = new System.Drawing.Size(488, 157);
+            this.Statistics_Btn.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.Statistics_Btn.Size = new System.Drawing.Size(154, 55);
             this.Statistics_Btn.TabIndex = 3;
             this.Statistics_Btn.Text = "Wireless Setup";
             this.Statistics_Btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Statistics_Btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.Statistics_Btn.UseVisualStyleBackColor = true;
+            this.Statistics_Btn.UseVisualStyleBackColor = false;
             this.Statistics_Btn.Click += new System.EventHandler(this.Statistics_Btn_Click);
             // 
             // Mote_BTN
             // 
+            this.Mote_BTN.BackColor = System.Drawing.Color.Black;
             this.Mote_BTN.Dock = System.Windows.Forms.DockStyle.Top;
             this.Mote_BTN.FlatAppearance.BorderSize = 0;
             this.Mote_BTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -178,20 +178,20 @@ namespace SMIP_Network
             this.Mote_BTN.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.Mote_BTN.IconSize = 30;
             this.Mote_BTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Mote_BTN.Location = new System.Drawing.Point(0, 442);
-            this.Mote_BTN.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
+            this.Mote_BTN.Location = new System.Drawing.Point(0, 155);
             this.Mote_BTN.Name = "Mote_BTN";
-            this.Mote_BTN.Padding = new System.Windows.Forms.Padding(32, 0, 63, 0);
-            this.Mote_BTN.Size = new System.Drawing.Size(488, 157);
+            this.Mote_BTN.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.Mote_BTN.Size = new System.Drawing.Size(154, 55);
             this.Mote_BTN.TabIndex = 2;
             this.Mote_BTN.Text = "Bluetooth Data";
             this.Mote_BTN.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Mote_BTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.Mote_BTN.UseVisualStyleBackColor = true;
+            this.Mote_BTN.UseVisualStyleBackColor = false;
             this.Mote_BTN.Click += new System.EventHandler(this.Mote_BTN_Click);
             // 
             // Home
             // 
+            this.Home.BackColor = System.Drawing.Color.Black;
             this.Home.Dock = System.Windows.Forms.DockStyle.Top;
             this.Home.FlatAppearance.BorderSize = 0;
             this.Home.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -202,50 +202,48 @@ namespace SMIP_Network
             this.Home.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.Home.IconSize = 30;
             this.Home.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Home.Location = new System.Drawing.Point(0, 285);
-            this.Home.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
+            this.Home.Location = new System.Drawing.Point(0, 100);
             this.Home.Name = "Home";
-            this.Home.Padding = new System.Windows.Forms.Padding(32, 0, 63, 0);
-            this.Home.Size = new System.Drawing.Size(488, 157);
+            this.Home.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.Home.Size = new System.Drawing.Size(154, 55);
             this.Home.TabIndex = 1;
             this.Home.Text = "Setup";
             this.Home.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Home.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.Home.UseVisualStyleBackColor = true;
+            this.Home.UseVisualStyleBackColor = false;
             this.Home.Click += new System.EventHandler(this.Home_Click);
             // 
             // panelLogo
             // 
+            this.panelLogo.BackColor = System.Drawing.Color.Black;
             this.panelLogo.Controls.Add(this.HuskLogo);
             this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelLogo.Location = new System.Drawing.Point(0, 0);
-            this.panelLogo.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
             this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(488, 285);
+            this.panelLogo.Size = new System.Drawing.Size(154, 100);
             this.panelLogo.TabIndex = 0;
             // 
             // HuskLogo
             // 
+            this.HuskLogo.BackColor = System.Drawing.Color.Black;
             this.HuskLogo.Image = global::SMIP_Network.Properties.Resources._1200px_St__Cloud_State_Huskies_logo_svg;
-            this.HuskLogo.Location = new System.Drawing.Point(0, 9);
-            this.HuskLogo.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
+            this.HuskLogo.Location = new System.Drawing.Point(0, 3);
             this.HuskLogo.Name = "HuskLogo";
-            this.HuskLogo.Size = new System.Drawing.Size(477, 268);
+            this.HuskLogo.Size = new System.Drawing.Size(151, 94);
             this.HuskLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.HuskLogo.TabIndex = 0;
             this.HuskLogo.TabStop = false;
             // 
             // panelTop
             // 
-            this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(4)))), ((int)(((byte)(48)))));
+            this.panelTop.BackColor = System.Drawing.Color.Black;
             this.panelTop.Controls.Add(this.MaximBtn);
             this.panelTop.Controls.Add(this.MinBtn);
             this.panelTop.Controls.Add(this.CloseBtn);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTop.Location = new System.Drawing.Point(488, 0);
-            this.panelTop.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
+            this.panelTop.Location = new System.Drawing.Point(154, 0);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(3356, 176);
+            this.panelTop.Size = new System.Drawing.Size(519, 62);
             this.panelTop.TabIndex = 1;
             this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTop_MouseDown);
             // 
@@ -262,10 +260,9 @@ namespace SMIP_Network
             this.MaximBtn.IconColor = System.Drawing.Color.White;
             this.MaximBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.MaximBtn.IconSize = 35;
-            this.MaximBtn.Location = new System.Drawing.Point(3002, 26);
-            this.MaximBtn.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
+            this.MaximBtn.Location = new System.Drawing.Point(407, 9);
             this.MaximBtn.Name = "MaximBtn";
-            this.MaximBtn.Size = new System.Drawing.Size(148, 126);
+            this.MaximBtn.Size = new System.Drawing.Size(47, 44);
             this.MaximBtn.TabIndex = 2;
             this.MaximBtn.Text = "□";
             this.MaximBtn.UseVisualStyleBackColor = false;
@@ -284,10 +281,9 @@ namespace SMIP_Network
             this.MinBtn.IconColor = System.Drawing.Color.White;
             this.MinBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.MinBtn.IconSize = 35;
-            this.MinBtn.Location = new System.Drawing.Point(2833, 26);
-            this.MinBtn.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
+            this.MinBtn.Location = new System.Drawing.Point(354, 9);
             this.MinBtn.Name = "MinBtn";
-            this.MinBtn.Size = new System.Drawing.Size(148, 126);
+            this.MinBtn.Size = new System.Drawing.Size(47, 44);
             this.MinBtn.TabIndex = 1;
             this.MinBtn.Text = "-";
             this.MinBtn.UseVisualStyleBackColor = false;
@@ -306,10 +302,9 @@ namespace SMIP_Network
             this.CloseBtn.IconColor = System.Drawing.Color.White;
             this.CloseBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.CloseBtn.IconSize = 35;
-            this.CloseBtn.Location = new System.Drawing.Point(3169, 26);
-            this.CloseBtn.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
+            this.CloseBtn.Location = new System.Drawing.Point(460, 9);
             this.CloseBtn.Name = "CloseBtn";
-            this.CloseBtn.Size = new System.Drawing.Size(148, 126);
+            this.CloseBtn.Size = new System.Drawing.Size(47, 44);
             this.CloseBtn.TabIndex = 0;
             this.CloseBtn.Text = "X";
             this.CloseBtn.UseVisualStyleBackColor = false;
@@ -317,36 +312,33 @@ namespace SMIP_Network
             // 
             // panelshadow
             // 
-            this.panelshadow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(0)))), ((int)(((byte)(28)))));
+            this.panelshadow.BackColor = System.Drawing.Color.Black;
             this.panelshadow.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelshadow.Location = new System.Drawing.Point(488, 176);
-            this.panelshadow.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
+            this.panelshadow.Location = new System.Drawing.Point(154, 62);
             this.panelshadow.Name = "panelshadow";
-            this.panelshadow.Size = new System.Drawing.Size(3356, 41);
+            this.panelshadow.Size = new System.Drawing.Size(519, 14);
             this.panelshadow.TabIndex = 2;
             // 
             // panelMain
             // 
             this.panelMain.BackColor = System.Drawing.Color.White;
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMain.Location = new System.Drawing.Point(488, 217);
-            this.panelMain.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
+            this.panelMain.Location = new System.Drawing.Point(154, 76);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(3356, 1670);
+            this.panelMain.Size = new System.Drawing.Size(519, 427);
             this.panelMain.TabIndex = 3;
             this.panelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMain_Paint);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 37F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(3844, 1887);
+            this.ClientSize = new System.Drawing.Size(673, 503);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.panelshadow);
             this.Controls.Add(this.panelTop);
             this.Controls.Add(this.panelmainPage);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
             this.Name = "Form1";
             this.Text = "SMARTMESH IP SENSOR NETWORK";
             this.panelmainPage.ResumeLayout(false);

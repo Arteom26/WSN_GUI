@@ -96,16 +96,16 @@ namespace SMIP_Network
             {
                 DisableButton();
                 currentBtn = (IconButton)senderBtn;
-                currentBtn.BackColor = Color.FromArgb(37, 36, 81);
-                currentBtn.ForeColor = color;
+                currentBtn.BackColor = Color.GhostWhite; //Color.FromArgb(37, 36, 81);
+                currentBtn.ForeColor = Color.Black; //color;
                 currentBtn.TextAlign = ContentAlignment.MiddleCenter;
-                currentBtn.IconColor = color;
+                currentBtn.IconColor = Color.Black; //color;
                 currentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
                 currentBtn.ImageAlign = ContentAlignment.MiddleRight;
 
                 //left border Button 
 
-                leftBorderBtn.BackColor = color;
+                leftBorderBtn.BackColor = Color.Black; //color;
                 leftBorderBtn.Location = new Point(0, currentBtn.Location.Y);
                 leftBorderBtn.Visible = true;
                 leftBorderBtn.BringToFront();
@@ -121,7 +121,7 @@ namespace SMIP_Network
             if (currentBtn != null)
             {
 
-                currentBtn.BackColor = Color.FromArgb(194, 4, 48);
+                currentBtn.BackColor = Color.Black; //Color.FromArgb(194, 4, 48);
                 currentBtn.ForeColor = Color.Gainsboro;
                 currentBtn.TextAlign = ContentAlignment.MiddleLeft;
                 currentBtn.IconColor = Color.Gainsboro;
@@ -176,6 +176,7 @@ namespace SMIP_Network
         {
             ActiveButton(sender, RGBColors.color2);
             OpenChildForm(bluetoothData);
+            
             //OpenChildForm(new MotesForm());
 
          //   MainPageForm settings = new MainPageForm(serialPort1);
