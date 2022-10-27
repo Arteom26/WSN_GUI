@@ -20,14 +20,7 @@ namespace SMIP_Network
             chart1.ChartAreas[0].AxisX.Title = "Number of Points";
             chart1.ChartAreas[0].AxisY.Title = "Value";
             chart1.ChartAreas[0].AxisY.IsStartedFromZero = false;
-            if (chart1.Series.IndexOf("asd") != -1)
-            {
-                // Series Exists
-            }
-            else
-            {
-                // Series Does Not Exist
-            }
+
             //chart1.Series.Add("00000000");
             //chart1.Series["00000000"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
             //chart1.Series["00000000"].Points.AddXY(0, 0);
