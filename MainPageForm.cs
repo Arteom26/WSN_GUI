@@ -196,6 +196,10 @@ namespace SMIP_Network
 
                     case 'C':// Mote list was recieved
                         byte[] curr_mac_addr = new byte[8];
+                        this.Invoke(new MethodInvoker(delegate {
+                            CBoxMoteList.Items.Clear();// Remove previous values
+                           
+                        }));
                         serialPort1.Read(buffer, 0, 1);
                         while (buffer[0] == 'D')// Will send 'E' once complete
                         {
@@ -203,7 +207,6 @@ namespace SMIP_Network
                             string temp = Universal.ByteArrayToString(curr_mac_addr);
                             this.Invoke(new MethodInvoker(delegate
                             {
-                                CBoxMoteList.Items.Clear();// Remove previous values
                                 CBoxMoteList.Items.Add(temp);// Add the mac address
                             }));
                             serialPort1.Read(buffer, 0, 1);
