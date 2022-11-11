@@ -7,6 +7,7 @@ using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FireSharp.Config;
@@ -294,6 +295,7 @@ namespace SMIP_Network
                             IPV6 = Regex.Replace(IPV6, ".{4}", "$0:");// Format the string;
                             IPV6 = IPV6.Remove(IPV6.Length-1);
                             IPV6Label.Text = "IPV6: " + IPV6;
+                            MessageBox.Show("Updated");
                         }
                         catch
                         {
@@ -630,6 +632,7 @@ namespace SMIP_Network
 
                 serialPort1.Write("A");// Send the network ID
                 serialPort1.Write(netid, 0, 2);
+                Thread.Sleep(50);
                 serialPort1.Write("B");// Send the join key
                 serialPort1.Write(jkey, 0, 16);
                 //serialPort1.Write("F");// Reset the system
@@ -668,7 +671,7 @@ namespace SMIP_Network
                     throw new Exception("Invalid Mac Address");
                 mac_addr = StringToByteArray(CBoxMoteList.Text);
 
-                serialPort1.Write("D");// Get Mote Infomation
+                serialPort1.Write("I");// Get Mote Infomation
                 serialPort1.Write(mac_addr, 0, mac_addr.Length);
             }
             catch
