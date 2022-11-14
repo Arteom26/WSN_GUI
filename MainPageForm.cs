@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
@@ -262,9 +263,10 @@ namespace SMIP_Network
                         {// Series Exists => add to graph
                             this.Invoke(new MethodInvoker(delegate
                             {
-                                objForm1.bluetoothData.chart1.Series[hex].Points.AddY(long.Parse(dat, System.Globalization.NumberStyles.HexNumber));
+                                objForm1.bluetoothData.chart1.Series[hex].Points.AddXY(DateTime.Now.ToOADate()
+                                    ,long.Parse(dat, System.Globalization.NumberStyles.HexNumber));
+                                //objForm1.bluetoothData.chart1.ChartAreas[0].AxisX.Minimum = DateTime.Now.ToOADate();
                             }));
-                            
                         }
                         else// Series Does Not Exist => create a new one
                         {
@@ -272,7 +274,13 @@ namespace SMIP_Network
                             {
                                 objForm1.bluetoothData.chart1.Series.Add(hex);
                                 objForm1.bluetoothData.chart1.Series[hex].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-                                objForm1.bluetoothData.chart1.Series[hex].Points.AddY(long.Parse(dat, System.Globalization.NumberStyles.HexNumber));
+                                objForm1.bluetoothData.chart1.Series[hex].Points.AddXY(DateTime.Now.ToOADate()
+                                   , long.Parse(dat, System.Globalization.NumberStyles.HexNumber));
+                                //objForm1.bluetoothData.chart1.Series[hex].Points.AddY(long.Parse(dat, System.Globalization.NumberStyles.HexNumber));
+                                objForm1.bluetoothData.chart1.Series[hex].XValueType = ChartValueType.Time;
+                                objForm1.bluetoothData.CBoxPlotList.Items.Add(hex);
+                                objForm1.bluetoothData.listBoxMotes.Items.Add(hex);
+                                //objForm1.bluetoothData.chart1.ChartAreas[0].AxisX.Minimum = DateTime.Now.ToOADate();
                             }));
                         }
                         break;
